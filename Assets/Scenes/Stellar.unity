@@ -362,8 +362,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlanetQuantity: 5
   RenderedSegments: 36
-  SizeDispersion: 0
-  AngleDispersion: 0
+  SizeDispersion: 0.1
+  AngleDispersion: 0.1
   Prefab: {fileID: 1427642699897798, guid: f01deb805133bae449e709de8332ad45, type: 2}
   Orbits: []
 --- !u!4 &1665935385
