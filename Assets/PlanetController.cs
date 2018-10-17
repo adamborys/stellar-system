@@ -30,7 +30,7 @@ public class PlanetController : MonoBehaviour {
 		for(int i = 0; i < systemCreator.PlanetQuantity; i++) {
 			planetSizes.Add((float)(0.6-(rand.NextDouble()/2)));
 			planetProgresses.Add((float)rand.NextDouble());
-			orbitalPeriods.Add((float)(planetSizes[i] * 100 * Mathf.Pow((i+1),2)));
+			orbitalPeriods.Add((float)(planetSizes[i] * 100 * Mathf.Sqrt((i+1))));
 			
 			OrbitProvider orbitProvider = systemCreator.Orbits[i].GetComponent<OrbitProvider>();
 			Ellipse orbitPath = orbitProvider.OrbitShape;
