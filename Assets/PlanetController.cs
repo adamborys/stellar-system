@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlanetController : MonoBehaviour {
 
-	[Range(1,5)]
+	[Range(0,100)]
 	public int GameSpeed = 1;
 	private GameObject systemOrigin;
 	private SystemCreator systemCreator;
@@ -28,15 +28,15 @@ public class PlanetController : MonoBehaviour {
 	}
 
 	IEnumerator AnimateOrbit(int index) {
-		if(system.OrbitalPeriods[index] < 0.1f) {
-			system.OrbitalPeriods[index] = 0.1f;
+		if(system.Planets[index].OrbitalPeriod < 0.1f) {
+			system.Planets[index].OrbitalPeriod = 0.1f;
 		}
 		while(true)
 		{
-			float orbitalSpeed = 1f / system.OrbitalPeriods[index] * GameSpeed/100;
-			system.PlanetProgresses[index] += Time.deltaTime * orbitalSpeed;
-			system.PlanetProgresses[index] %= 1f;
-			SetPosition(system.OrbitalPaths[index], system.PlanetTransforms[index], system.PlanetProgresses[index]);
+			float orbitalSpeed = 1f / system.Planets[index].OrbitalPeriod * GameSpeed/2000;
+			system.Planets[index].OrbitalProgress += Time.deltaTime * orbitalSpeed;
+			system.Planets[index].OrbitalProgress %= 1f;
+			SetPosition(system.OrbitalPaths[index], system.PlanetTransforms[index], system.Planets[index].OrbitalProgress);
 			yield return null;
 		}
 	}

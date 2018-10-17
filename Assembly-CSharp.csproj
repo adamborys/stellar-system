@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\CollisionChecker.cs" />
      <Compile Include="Assets\Datamodels\Ellipse.cs" />
+     <Compile Include="Assets\Datamodels\Planet.cs" />
      <Compile Include="Assets\Datamodels\StellarSystem.cs" />
      <Compile Include="Assets\OrbitProvider.cs" />
      <Compile Include="Assets\PlanetController.cs" />
