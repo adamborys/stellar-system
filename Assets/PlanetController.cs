@@ -4,50 +4,22 @@ using UnityEngine;
 
 public class PlanetController : MonoBehaviour {
 
-	private GameObject system;
+	[Range(1,5)]
+	public int GameSpeed = 1;
+	private GameObject systemOrigin;
 	private SystemCreator systemCreator;
-	private List<Ellipse> orbitalPaths;
-	private List<Transform> planetTransforms;
-	private List<float> planetSizes;
-	private List<float> planetProgresses;
-	private List<float> orbitalPeriods;
+	private StellarSystem system;
 	private GameObject prefab;
 
 	// Use this for initialization
 	void Awake () {
-		system = GameObject.Find("StellarSystem");
-		systemCreator = system.GetComponent<SystemCreator>();
+		systemOrigin = GameObject.Find("SystemOrigin");
+		systemCreator = systemOrigin.GetComponent<SystemCreator>();
 
-		orbitalPaths = new List<Ellipse>();
-		planetTransforms = new List<Transform>();
-		planetSizes = new List<float>();
-		planetProgresses = new List<float>();
-		orbitalPeriods = new List<float>();
+		system = new StellarSystem(systemCreator, systemOrigin);
 
-		prefab = Resources.Load("Prefabs/Planet") as GameObject;
-
-		System.Random rand = new System.Random();
-		for(int i = 0; i < systemCreator.PlanetQuantity; i++) {
-			planetSizes.Add((float)(0.6-(rand.NextDouble()/2)));
-			planetProgresses.Add((float)rand.NextDouble());
-			orbitalPeriods.Add((float)(planetSizes[i] * 100 * Mathf.Sqrt((i+1))));
-			
-			OrbitProvider orbitProvider = systemCreator.Orbits[i].GetComponent<OrbitProvider>();
-			Ellipse orbitPath = orbitProvider.OrbitShape;
-			orbitalPaths.Add(orbitPath);
-			GameObject planet = (Instantiate(prefab) as GameObject);
-			planet.name = "Planet";
-			planet.transform.localScale = new Vector3(planetSizes[i],planetSizes[i],planetSizes[i]);
-			planetTransforms.Add(planet.transform);
-			planetTransforms[i].parent = systemCreator.Orbits[i].transform;
+		for(int i = 0; i < systemCreator.PlanetQuantity; i++)
 			StartCoroutine("AnimateOrbit",i);
-		}
-	}
-	
-	void Update () {/*
-		for(int i = 0; i < orbitalPaths.Count; i++) {
-			SetPosition(orbitalPaths[i], planetTransforms[i], planetProgresses[i]);
-		} */
 	}
 
 	public void SetPosition(Ellipse orbitalPath, Transform planetTransform, float progress) {
@@ -56,15 +28,15 @@ public class PlanetController : MonoBehaviour {
 	}
 
 	IEnumerator AnimateOrbit(int index) {
-		if(orbitalPeriods[index] < 0.1f) {
-			orbitalPeriods[index] = 0.1f;
+		if(system.OrbitalPeriods[index] < 0.1f) {
+			system.OrbitalPeriods[index] = 0.1f;
 		}
 		while(true)
 		{
-			float orbitalSpeed = 1f / orbitalPeriods[index];
-			planetProgresses[index] += Time.deltaTime * orbitalSpeed;
-			planetProgresses[index] %= 1f;
-			SetPosition(orbitalPaths[index], planetTransforms[index], planetProgresses[index]);
+			float orbitalSpeed = 1f / system.OrbitalPeriods[index] * GameSpeed/100;
+			system.PlanetProgresses[index] += Time.deltaTime * orbitalSpeed;
+			system.PlanetProgresses[index] %= 1f;
+			SetPosition(system.OrbitalPaths[index], system.PlanetTransforms[index], system.PlanetProgresses[index]);
 			yield return null;
 		}
 	}
