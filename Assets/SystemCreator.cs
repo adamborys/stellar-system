@@ -40,7 +40,7 @@ public class SystemCreator : MonoBehaviour {
 		}
 		
 		System.Random rand = new System.Random();
-		xAxis = yAxis = 4;
+		xAxis = yAxis = 8;
 
 		for(int i = 0; i < PlanetQuantity; i++) {
 			// Stworzenie orbit oraz podpięcie transforma pod układ planetarny
@@ -83,8 +83,8 @@ public class SystemCreator : MonoBehaviour {
 			}
 
 
-			xAxis += 3;
-			yAxis += 3;
+			xAxis += 6;
+			yAxis += 6;
 		}
 		gameObject.AddComponent<PlanetController>();
 	}
