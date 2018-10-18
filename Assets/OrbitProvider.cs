@@ -13,15 +13,9 @@ public class OrbitProvider : MonoBehaviour {
 
 	void Awake() {
 		lineRenderer = GetComponent<LineRenderer>();
-		CalculateEllipse();
 	}
 
-	void OnValidate() {
-		if(Application.isPlaying && lineRenderer != null)
-			CalculateEllipse();
-	}
-
-	public void CalculateEllipse() {
+	public void DisplayEllipse() {
 		Vector3[] points = new Vector3[Segments + 1];
 
 		for(int i = 0; i < Segments; i++) {

@@ -40,7 +40,7 @@ public class SystemCreator : MonoBehaviour {
 		}
 		
 		System.Random rand = new System.Random();
-		xAxis = yAxis = 8;
+		xAxis = yAxis = 4;
 
 		for(int i = 0; i < PlanetQuantity; i++) {
 			// Stworzenie orbit oraz podpięcie transforma pod układ planetarny
@@ -61,11 +61,13 @@ public class SystemCreator : MonoBehaviour {
 				currentRotation.w
 			);
 
+
+
 			// Wyświetlanie orbit
 			OrbitProvider orbit = Orbits[i].GetComponent<OrbitProvider>();
 			orbit.OrbitShape = new Ellipse(xAxisResized,yAxisResized);
 			orbit.Segments = RenderedSegments;
-			orbit.CalculateEllipse();
+			orbit.DisplayEllipse();
 
 			// Zasymulowanie pierwszego prawa Keplera
 			if(xAxisResized > yAxisResized) {
@@ -83,8 +85,8 @@ public class SystemCreator : MonoBehaviour {
 			}
 
 
-			xAxis += 6;
-			yAxis += 6;
+			xAxis += 3;
+			yAxis += 3;
 		}
 		gameObject.AddComponent<PlanetController>();
 	}
