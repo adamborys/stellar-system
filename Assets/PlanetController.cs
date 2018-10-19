@@ -13,7 +13,7 @@ public class PlanetController : MonoBehaviour {
 
 	private GameObject prefab;
 
-	// Use this for initialization
+
 	void Awake () {
 		systemOrigin = GameObject.Find("SystemOrigin");
 		systemCreator = systemOrigin.GetComponent<SystemCreator>();
@@ -28,7 +28,7 @@ public class PlanetController : MonoBehaviour {
 
 	public void SetPosition(Ellipse orbitalPath, Transform planetTransform, float progress) {
 		Vector2 position = orbitalPath.Evaluate(progress);
-		planetTransform.localPosition = new Vector3(position.x, position.y,0);
+		planetTransform.localPosition = new Vector3(position.x, 0f, position.y);
 	}
 
 	private IEnumerator AnimateOrbit(int index) {

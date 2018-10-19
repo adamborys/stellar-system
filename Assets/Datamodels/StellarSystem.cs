@@ -24,7 +24,7 @@ public class StellarSystem {
 
 			GameObject planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 			planet.name = "Planet";
-			planet.transform.localScale = new Vector3(this.Planets[i].Size,this.Planets[i].Size,this.Planets[i].Size);
+			planet.transform.localScale = new Vector3(this.Planets[i].Scale,this.Planets[i].Scale,this.Planets[i].Scale);
 
 			this.PlanetTransforms.Add(planet.transform);
 			this.PlanetTransforms[i].parent = creator.Orbits[i].transform;

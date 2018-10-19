@@ -9,7 +9,7 @@ public class SystemCreator : MonoBehaviour {
 
 	[Range(3,36)]
 	public int RenderedSegments;
-	[Range(0f,0.5f)]
+	[Range(0f,0.2f)]
 	public float SizeDispersion;
 	[Range(0f,0.5f)]
 	public float AngleDispersion;
@@ -18,7 +18,6 @@ public class SystemCreator : MonoBehaviour {
 	public List<GameObject> Orbits;
 
 	private float xAxis, yAxis;
-	private const float minimalDistance = 3.8f;
 	
 	void Awake() {
 		Orbits = new List<GameObject>();
@@ -41,53 +40,78 @@ public class SystemCreator : MonoBehaviour {
 		}
 		
 		System.Random rand = new System.Random();
-		xAxis = yAxis = 5 + 10 * SizeDispersion;
+		xAxis = yAxis = 8 + 10 * SizeDispersion;
 
 		for(int i = 0; i < PlanetQuantity; i++) {
+			
 			// Stworzenie orbit oraz podpięcie transforma pod układ planetarny
 			Orbits.Add(Instantiate(Prefab) as GameObject);
 			Orbits[i].name = "Orbit" + i;
 			Orbits[i].transform.parent = transform;
 			
 			// Randomizowane odkształcenie orbit
-			float xAxisResized = xAxis + (float)rand.NextDouble() * SizeDispersion / (i+1);
-			float yAxisResized = yAxis + (float)rand.NextDouble() * SizeDispersion * (i+1);
+			float resize = (float)rand.NextDouble();
+			float xAxisResized = xAxis + resize * SizeDispersion / (i+1);
+			float yAxisResized = yAxis + resize * SizeDispersion * (i+1);
 
 			// Randomizowane odchylanie orbit
 			Quaternion currentRotation = Orbits[i].transform.rotation;
-			Orbits[i].transform.rotation = new Quaternion(
-				currentRotation.x + (float)rand.NextDouble() * AngleDispersion,
-				currentRotation.y + (float)rand.NextDouble() * AngleDispersion,
-				currentRotation.z,
-				currentRotation.w
-			);
+			double directionRandomizer = rand.NextDouble();
+			if(directionRandomizer > 0.75f)
+				Orbits[i].transform.rotation = new Quaternion(
+					currentRotation.x + (float)rand.NextDouble() * AngleDispersion,
+					currentRotation.y,
+					currentRotation.z + (float)rand.NextDouble() * AngleDispersion,
+					currentRotation.w
+				);
+			else if(directionRandomizer > 0.5f)
+				Orbits[i].transform.rotation = new Quaternion(
+					currentRotation.x - (float)rand.NextDouble() * AngleDispersion,
+					currentRotation.y,
+					currentRotation.z - (float)rand.NextDouble() * AngleDispersion,
+					currentRotation.w
+				);
+			else if(directionRandomizer > 0.25f)
+				Orbits[i].transform.rotation = new Quaternion(
+					currentRotation.x + (float)rand.NextDouble() * AngleDispersion,
+					currentRotation.y,
+					currentRotation.z - (float)rand.NextDouble() * AngleDispersion,
+					currentRotation.w
+				);
+			else
+				Orbits[i].transform.rotation = new Quaternion(
+					currentRotation.x - (float)rand.NextDouble() * AngleDispersion,
+					currentRotation.y,
+					currentRotation.z + (float)rand.NextDouble() * AngleDispersion,
+					currentRotation.w
+				);
 
-
-
-			// Wyświetlanie orbit
 			OrbitProvider orbitProvider = Orbits[i].GetComponent<OrbitProvider>();
 			orbitProvider.OrbitShape = new Ellipse(xAxisResized,yAxisResized);
 			orbitProvider.Segments = RenderedSegments;
 
 			// Zasymulowanie pierwszego prawa Keplera
 			float focalDistance = orbitProvider.OrbitShape.FocalDistance;
-			if(xAxisResized > yAxisResized)
+			if(xAxisResized > yAxisResized) {
 				Orbits[i].transform.Translate(new Vector3(
 					focalDistance,
 					0,
 					0
 				));
-			else
+			}
+			else {
 				Orbits[i].transform.Translate(new Vector3(
 					0,
-					focalDistance,
-					0
+					0,
+					focalDistance
 				));
-
+			}
+			
+			// Wyświetlanie orbit
 			orbitProvider.DisplayEllipse();
 
-			xAxis += 4 + 10 * SizeDispersion;
-			yAxis += 4 + 10 * SizeDispersion;
+			xAxis += 6 + 20 * SizeDispersion;
+			yAxis += 6 + 20 * SizeDispersion;
 		}
 		gameObject.AddComponent<PlanetController>();
 	}
