@@ -18,6 +18,7 @@ public class SystemCreator : MonoBehaviour {
 	public List<GameObject> Orbits;
 
 	private float xAxis, yAxis;
+	private const float minimalDistance = 3.8f;
 	
 	void Awake() {
 		Orbits = new List<GameObject>();
@@ -40,7 +41,7 @@ public class SystemCreator : MonoBehaviour {
 		}
 		
 		System.Random rand = new System.Random();
-		xAxis = yAxis = 5;
+		xAxis = yAxis = 5 + 10 * SizeDispersion;
 
 		for(int i = 0; i < PlanetQuantity; i++) {
 			// Stworzenie orbit oraz podpięcie transforma pod układ planetarny
@@ -69,17 +70,24 @@ public class SystemCreator : MonoBehaviour {
 			orbitProvider.Segments = RenderedSegments;
 
 			// Zasymulowanie pierwszego prawa Keplera
-			Orbits[i].transform.Translate(new Vector3(
-				orbitProvider.OrbitShape.FocalDistance,
-				0,
-				0
-			));
+			float focalDistance = orbitProvider.OrbitShape.FocalDistance;
+			if(xAxisResized > yAxisResized)
+				Orbits[i].transform.Translate(new Vector3(
+					focalDistance,
+					0,
+					0
+				));
+			else
+				Orbits[i].transform.Translate(new Vector3(
+					0,
+					focalDistance,
+					0
+				));
 
 			orbitProvider.DisplayEllipse();
 
-
-			xAxis += 4;
-			yAxis += 4;
+			xAxis += 4 + 10 * SizeDispersion;
+			yAxis += 4 + 10 * SizeDispersion;
 		}
 		gameObject.AddComponent<PlanetController>();
 	}
