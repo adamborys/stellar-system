@@ -9,9 +9,9 @@ public class SystemCreator : MonoBehaviour {
 
 	[Range(3,36)]
 	public int RenderedSegments;
-	[Range(0f,1f)]
+	[Range(0f,0.5f)]
 	public float SizeDispersion;
-	[Range(0f,1f)]
+	[Range(0f,0.5f)]
 	public float AngleDispersion;
 
 	public GameObject Prefab;
@@ -40,7 +40,7 @@ public class SystemCreator : MonoBehaviour {
 		}
 		
 		System.Random rand = new System.Random();
-		xAxis = yAxis = 4;
+		xAxis = yAxis = 5;
 
 		for(int i = 0; i < PlanetQuantity; i++) {
 			// Stworzenie orbit oraz podpięcie transforma pod układ planetarny
@@ -57,36 +57,29 @@ public class SystemCreator : MonoBehaviour {
 			Orbits[i].transform.rotation = new Quaternion(
 				currentRotation.x + (float)rand.NextDouble() * AngleDispersion,
 				currentRotation.y + (float)rand.NextDouble() * AngleDispersion,
-				currentRotation.z + (float)rand.NextDouble() * AngleDispersion / (i+1),
+				currentRotation.z,
 				currentRotation.w
 			);
 
 
 
 			// Wyświetlanie orbit
-			OrbitProvider orbit = Orbits[i].GetComponent<OrbitProvider>();
-			orbit.OrbitShape = new Ellipse(xAxisResized,yAxisResized);
-			orbit.Segments = RenderedSegments;
-			orbit.DisplayEllipse();
+			OrbitProvider orbitProvider = Orbits[i].GetComponent<OrbitProvider>();
+			orbitProvider.OrbitShape = new Ellipse(xAxisResized,yAxisResized);
+			orbitProvider.Segments = RenderedSegments;
 
 			// Zasymulowanie pierwszego prawa Keplera
-			if(xAxisResized > yAxisResized) {
-				Orbits[i].transform.Translate(new Vector3(
-					orbit.OrbitShape.FocalDistance,
-					0,
-					0
-				));
-			} else {
-				Orbits[i].transform.Translate(new Vector3(
-					0,
-					orbit.OrbitShape.FocalDistance,
-					0
-				));
-			}
+			Orbits[i].transform.Translate(new Vector3(
+				orbitProvider.OrbitShape.FocalDistance,
+				0,
+				0
+			));
+
+			orbitProvider.DisplayEllipse();
 
 
-			xAxis += 3;
-			yAxis += 3;
+			xAxis += 4;
+			yAxis += 4;
 		}
 		gameObject.AddComponent<PlanetController>();
 	}
