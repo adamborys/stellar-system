@@ -22,7 +22,6 @@ public class PlanetController : MonoBehaviour {
 
 		for(int i = 0; i < systemCreator.PlanetQuantity; i++) {
 			SetPosition(System.Orbits[i].OrbitShape, System.PlanetTransforms[i], System.Planets[i].OrbitalProgress);
-			StartCoroutine("AnimateOrbit",i);
 		}
 	}
 
@@ -31,7 +30,7 @@ public class PlanetController : MonoBehaviour {
 		planetTransform.localPosition = new Vector3(position.x, 0f, position.y);
 	}
 	
-	private IEnumerator AnimateOrbit(int index) {
+	public IEnumerator AnimateOrbit(int index) {
 		if(System.Planets[index].OrbitalPeriod < 0.1f) {
 			System.Planets[index].OrbitalPeriod = 0.1f;
 		}

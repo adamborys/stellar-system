@@ -9,6 +9,8 @@ public class TimeAxisController : MonoBehaviour {
 	private Slider timeAxisSlider;
 	private Text timeStopped;
 	private Text timeLeft;
+	private PlanetController planetController;
+	private GameObject gameEnd;
 	
 	void Start () {
 		isTimeAxisEnabled = GameObject.Find("Toggle").GetComponent<Toggle>();
@@ -24,7 +26,13 @@ public class TimeAxisController : MonoBehaviour {
 		timeStopped.enabled = false;
 		timeLeft.enabled = false;
 		timeAxisSlider.gameObject.SetActive(false);
-		StartCoroutine("startTime");
+		planetController = GameObject.Find("SystemOrigin").GetComponent<PlanetController>();
+		gameEnd =  GameObject.Find("GameEnd");
+		gameEnd.SetActive(false);
+		StartCoroutine(startTime());
+		for(int i = 0; i < planetController.System.Planets.Count; i++) {
+			StartCoroutine(planetController.AnimateOrbit(i));
+		}
 	}
 	
 	void toggleChange() {
@@ -51,5 +59,10 @@ public class TimeAxisController : MonoBehaviour {
 			StellarSystem.GameTime += Time.deltaTime;
 			yield return null;
 		}
+		timeAxisSlider.value = 0;
+		timeStopped.enabled = false;
+		timeLeft.enabled = false;
+		timeAxisSlider.gameObject.SetActive(false);
+		gameEnd.SetActive(true);
 	}
 }
