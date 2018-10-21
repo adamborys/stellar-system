@@ -7,7 +7,7 @@ public class SystemCreator : MonoBehaviour {
 	[Range(2,10)]
 	public int PlanetQuantity;
 
-	[Range(3,36)]
+	[Range(3,64)]
 	public int RenderedSegments;
 	[Range(0f,0.2f)]
 	public float SizeDispersion;
@@ -88,7 +88,7 @@ public class SystemCreator : MonoBehaviour {
 
 			OrbitProvider orbitProvider = Orbits[i].GetComponent<OrbitProvider>();
 			orbitProvider.OrbitShape = new Ellipse(xAxisResized,yAxisResized);
-			orbitProvider.Segments = RenderedSegments;
+			orbitProvider.Segments = (RenderedSegments/2) + (RenderedSegments/2)*(i/(PlanetQuantity-1));
 
 			// Zasymulowanie pierwszego prawa Keplera
 			float focalDistance = orbitProvider.OrbitShape.FocalDistance;
