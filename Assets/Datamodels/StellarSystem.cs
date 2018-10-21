@@ -8,6 +8,7 @@ public class StellarSystem {
 	public List<OrbitProvider> Orbits;
 	public List<Transform> PlanetTransforms;
 	public List<Planet> Planets;
+	public int GameDuration = 900;
 
 	public StellarSystem(SystemCreator creator, GameObject origin) {
 		this.Orbits = new List<OrbitProvider>();
@@ -27,5 +28,9 @@ public class StellarSystem {
 			this.PlanetTransforms.Add(planet.transform);
 			this.PlanetTransforms[i].parent = creator.Orbits[i].transform;
 		}
+	}
+
+	public float GetDistanceBetween(Transform firstPlanet, Transform secondPlanet) {
+		return Vector3.Distance(firstPlanet.position, secondPlanet.position);
 	}
 }

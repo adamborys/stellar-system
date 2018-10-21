@@ -6,10 +6,10 @@ public class PlanetController : MonoBehaviour {
 
 	[Range(0,100)]
 	public float GameSpeed = 1;
+	public StellarSystem System;
 	
 	private GameObject systemOrigin;
 	private SystemCreator systemCreator;
-	private StellarSystem system;
 
 	private GameObject prefab;
 
@@ -18,10 +18,10 @@ public class PlanetController : MonoBehaviour {
 		systemOrigin = GameObject.Find("SystemOrigin");
 		systemCreator = systemOrigin.GetComponent<SystemCreator>();
 
-		system = new StellarSystem(systemCreator, systemOrigin);
+		System = new StellarSystem(systemCreator, systemOrigin);
 
 		for(int i = 0; i < systemCreator.PlanetQuantity; i++) {
-			SetPosition(system.Orbits[i].OrbitShape, system.PlanetTransforms[i], system.Planets[i].OrbitalProgress);
+			SetPosition(System.Orbits[i].OrbitShape, System.PlanetTransforms[i], System.Planets[i].OrbitalProgress);
 			StartCoroutine("AnimateOrbit",i);
 		}
 	}
@@ -32,16 +32,16 @@ public class PlanetController : MonoBehaviour {
 	}
 
 	private IEnumerator AnimateOrbit(int index) {
-		if(system.Planets[index].OrbitalPeriod < 0.1f) {
-			system.Planets[index].OrbitalPeriod = 0.1f;
+		if(System.Planets[index].OrbitalPeriod < 0.1f) {
+			System.Planets[index].OrbitalPeriod = 0.1f;
 		}
 		while(true)
 		{
-			float distanceFromStar = Vector3.Distance(system.PlanetTransforms[index].position, new Vector3());
-			float orbitalSpeed = (GameSpeed/100) * ((index+1) / (system.Planets[index].OrbitalPeriod * distanceFromStar));
-			system.Planets[index].OrbitalProgress += Time.deltaTime * orbitalSpeed;
-			system.Planets[index].OrbitalProgress %= 1f;
-			SetPosition(system.Orbits[index].OrbitShape, system.PlanetTransforms[index], system.Planets[index].OrbitalProgress);
+			float distanceFromStar = Vector3.Distance(System.PlanetTransforms[index].position, new Vector3());
+			float orbitalSpeed = (GameSpeed/100) * ((index+1) / (System.Planets[index].OrbitalPeriod * distanceFromStar));
+			System.Planets[index].OrbitalProgress += Time.deltaTime * orbitalSpeed;
+			System.Planets[index].OrbitalProgress %= 1f;
+			SetPosition(System.Orbits[index].OrbitShape, System.PlanetTransforms[index], System.Planets[index].OrbitalProgress);
 			yield return null;
 		}
 	}

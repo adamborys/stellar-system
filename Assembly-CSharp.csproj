@@ -56,10 +56,11 @@
      <Compile Include="Assets\Datamodels\Ellipse.cs" />
      <Compile Include="Assets\Datamodels\Planet.cs" />
      <Compile Include="Assets\Datamodels\StellarSystem.cs" />
-     <Compile Include="Assets\MenuController.cs" />
      <Compile Include="Assets\OrbitProvider.cs" />
      <Compile Include="Assets\PlanetController.cs" />
      <Compile Include="Assets\SystemCreator.cs" />
+     <Compile Include="Assets\UIscripts\MenuController.cs" />
+     <Compile Include="Assets\UIscripts\TimeAxisController.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Public/Documents/Unity Projects/Stellar System/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
