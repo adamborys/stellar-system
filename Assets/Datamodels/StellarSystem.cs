@@ -5,12 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class StellarSystem {
 
-	public List<Ellipse> OrbitalPaths;
+	public List<OrbitProvider> Orbits;
 	public List<Transform> PlanetTransforms;
 	public List<Planet> Planets;
 
 	public StellarSystem(SystemCreator creator, GameObject origin) {
-		this.OrbitalPaths = new List<Ellipse>();
+		this.Orbits = new List<OrbitProvider>();
 		this.Planets = new List<Planet>();
 		this.PlanetTransforms = new List<Transform>();
 
@@ -18,9 +18,7 @@ public class StellarSystem {
 		for(int i = 0; i < creator.PlanetQuantity; i++) {
 			Planets.Add(new Planet(i, randomizer));
 
-			OrbitProvider orbitProvider = creator.Orbits[i].GetComponent<OrbitProvider>();
-			Ellipse orbitPath = orbitProvider.OrbitShape;
-			this.OrbitalPaths.Add(orbitPath);
+			this.Orbits.Add(creator.Orbits[i].GetComponent<OrbitProvider>());
 
 			GameObject planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 			planet.name = "Planet";

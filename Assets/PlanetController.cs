@@ -21,7 +21,7 @@ public class PlanetController : MonoBehaviour {
 		system = new StellarSystem(systemCreator, systemOrigin);
 
 		for(int i = 0; i < systemCreator.PlanetQuantity; i++) {
-			SetPosition(system.OrbitalPaths[i], system.PlanetTransforms[i], system.Planets[i].OrbitalProgress);
+			SetPosition(system.Orbits[i].OrbitShape, system.PlanetTransforms[i], system.Planets[i].OrbitalProgress);
 			StartCoroutine("AnimateOrbit",i);
 		}
 	}
@@ -41,7 +41,7 @@ public class PlanetController : MonoBehaviour {
 			float orbitalSpeed = (GameSpeed/100) * ((index+1) / (system.Planets[index].OrbitalPeriod * distanceFromStar));
 			system.Planets[index].OrbitalProgress += Time.deltaTime * orbitalSpeed;
 			system.Planets[index].OrbitalProgress %= 1f;
-			SetPosition(system.OrbitalPaths[index], system.PlanetTransforms[index], system.Planets[index].OrbitalProgress);
+			SetPosition(system.Orbits[index].OrbitShape, system.PlanetTransforms[index], system.Planets[index].OrbitalProgress);
 			yield return null;
 		}
 	}
