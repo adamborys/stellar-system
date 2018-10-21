@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class MenuController : MonoBehaviour {
 	private Slider planetSlider;
 	private Toggle isTight;
 	private Toggle isStrange;
+	private Button create;
 	private SystemCreator systemCreator;
 
 	// Use this for initialization
@@ -24,8 +26,9 @@ public class MenuController : MonoBehaviour {
 		isTight.onValueChanged.AddListener(delegate {isTightToggleChange();});
 		isStrange = GameObject.Find("IsStrange").GetComponent<Toggle>();
 		isStrange.onValueChanged.AddListener(delegate {isStrangeToggleChange();});
+		create = GameObject.Find("Create").GetComponent<Button>();
+		create.onClick.AddListener(delegate {createSystem();});
 	}
-
   private void planetSliderChange()
   {
 		systemCreator.PlanetQuantity = (int)planetSlider.value;
@@ -49,5 +52,10 @@ public class MenuController : MonoBehaviour {
 		else
 			systemCreator.AngleDispersion = 0.05f;
 		systemCreator.CalculateOrbits();
+  }
+
+  private void createSystem()
+  {
+    SceneManager.LoadScene("Stellar", LoadSceneMode.Single);
   }
 }
