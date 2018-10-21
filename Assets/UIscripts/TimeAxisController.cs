@@ -50,7 +50,7 @@ public class TimeAxisController : MonoBehaviour {
 		}
 	}
 	void sliderChange() {
-
+		
 	}
 
 	private IEnumerator startTime() {
