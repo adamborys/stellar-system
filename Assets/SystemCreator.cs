@@ -7,7 +7,7 @@ public class SystemCreator : MonoBehaviour {
 	[Range(2,10)]
 	public int PlanetQuantity;
 
-	[Range(3,64)]
+	[Range(3,128)]
 	public int RenderedSegments;
 	[Range(0f,0.2f)]
 	public float SizeDispersion;

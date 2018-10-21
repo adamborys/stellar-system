@@ -36,9 +36,9 @@ public class MenuController : MonoBehaviour {
   {
 		PlanetController planetController = GameObject.Find("SystemOrigin").GetComponent<PlanetController>();
     if(gameDuration.value == 0) {
-			planetController.System.GameDuration = 900;
+			StellarSystem.GameDuration = 900f;
 		} else {
-			planetController.System.GameDuration = 1800;
+			StellarSystem.GameDuration = 1800f;
 		}
   }
 
@@ -75,15 +75,15 @@ public class MenuController : MonoBehaviour {
   }
 
 	private IEnumerator loadStellarSceneWithGameObjectTransferAsync(GameObject transferredGameObject) {
-        Scene currentScene = SceneManager.GetActiveScene();
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Stellar", LoadSceneMode.Additive);
-				
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
+		Scene currentScene = SceneManager.GetActiveScene();
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Stellar", LoadSceneMode.Additive);
+		
+		while (!asyncLoad.isDone)
+		{
+				yield return null;
+		}
 
-        SceneManager.MoveGameObjectToScene(transferredGameObject, SceneManager.GetSceneByName("Stellar"));
-        SceneManager.UnloadSceneAsync(currentScene);
+		SceneManager.MoveGameObjectToScene(transferredGameObject, SceneManager.GetSceneByName("Stellar"));
+		SceneManager.UnloadSceneAsync(currentScene);
 	}
 }

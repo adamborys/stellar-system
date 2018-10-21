@@ -8,7 +8,8 @@ public class StellarSystem {
 	public List<OrbitProvider> Orbits;
 	public List<Transform> PlanetTransforms;
 	public List<Planet> Planets;
-	public int GameDuration = 900;
+	public static float GameTime = 0;
+	public static float GameDuration = 900f;
 
 	public StellarSystem(SystemCreator creator, GameObject origin) {
 		this.Orbits = new List<OrbitProvider>();

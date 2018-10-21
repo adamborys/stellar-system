@@ -2496,7 +2496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlanetQuantity: 5
-  RenderedSegments: 64
+  RenderedSegments: 128
   SizeDispersion: 0.2
   AngleDispersion: 0.05
   Prefab: {fileID: 1427642699897798, guid: f01deb805133bae449e709de8332ad45, type: 2}
