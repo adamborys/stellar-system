@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/StellarMenu.unity
+- path: Assets/Scenes/Stellar.unity
   isLoaded: 1
   isActive: 1
