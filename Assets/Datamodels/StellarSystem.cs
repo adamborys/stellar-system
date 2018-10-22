@@ -11,6 +11,7 @@ public class StellarSystem {
 	public static float GameTime = 0;
 	public static float StoppedTime = 0;
 	public static float GameDuration = 900f;
+	public static bool IsPaused = false;
 
 	public StellarSystem(SystemCreator creator, GameObject origin) {
 		this.Orbits = new List<OrbitProvider>();

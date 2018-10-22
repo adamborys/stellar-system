@@ -39,18 +39,20 @@ public class TimeAxisController : MonoBehaviour {
 		if(isTimeAxisEnabled.isOn) {
 			TimeSpan time =  TimeSpan.FromSeconds(StellarSystem.GameTime);
 			timeStopped.text = time.Minutes.ToString("00") + ':' + time.Seconds.ToString("00");
-			timeStopped.enabled = true;
-			timeLeft.enabled = true;
+			timeAxisSlider.value = StellarSystem.GameTime/StellarSystem.GameDuration;
 			timeAxisSlider.gameObject.SetActive(true);
 		} else {
 			timeAxisSlider.value = 0;
-			timeStopped.enabled = false;
-			timeLeft.enabled = false;
 			timeAxisSlider.gameObject.SetActive(false);
 		}
+		timeStopped.enabled = !timeStopped.enabled;
+		timeLeft.enabled = !timeLeft.enabled;
+		StellarSystem.IsPaused = !StellarSystem.IsPaused;
 	}
 	void sliderChange() {
-		
+	  float now = StellarSystem.GameTime/StellarSystem.GameDuration;
+		if(timeAxisSlider.value < now)
+			timeAxisSlider.value = now;
 	}
 
 	private IEnumerator startTime() {

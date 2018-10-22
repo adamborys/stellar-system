@@ -40,7 +40,8 @@ public class PlanetController : MonoBehaviour {
 			float orbitalSpeed = (GameSpeed/100) * ((index+1) / (System.Planets[index].OrbitalPeriod * distanceFromStar));
 			System.Planets[index].OrbitalProgress += Time.deltaTime * orbitalSpeed;
 			System.Planets[index].OrbitalProgress %= 1f;
-			SetPosition(System.Orbits[index].OrbitShape, System.PlanetTransforms[index], System.Planets[index].OrbitalProgress);
+			if(!StellarSystem.IsPaused)
+				SetPosition(System.Orbits[index].OrbitShape, System.PlanetTransforms[index], System.Planets[index].OrbitalProgress);
 			yield return null;
 		}
 	}
