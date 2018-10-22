@@ -9,30 +9,29 @@ public class PlanetController : MonoBehaviour {
 	public StellarSystem System;
 	
 	private GameObject systemOrigin;
-	private SystemCreator systemCreator;
 
 	private GameObject prefab;
 
 
 	void Start () {
 		systemOrigin = GameObject.Find("SystemOrigin");
-		systemCreator = systemOrigin.GetComponent<SystemCreator>();
+	  SystemCreator systemCreator = systemOrigin.GetComponent<SystemCreator>();
 
 		System = new StellarSystem(systemCreator, systemOrigin);
 
 		for(int i = 0; i < systemCreator.PlanetQuantity; i++) {
-			SetPosition(System.Orbits[i].OrbitShape, System.PlanetTransforms[i], System.Planets[i].OrbitalProgress);
+			SetPosition(i, System.Planets[i].OrbitalProgress);
 		}
 	}
 
-	public void SetPosition(Ellipse orbitalPath, Transform planetTransform, float progress) {
-		Vector2 position = orbitalPath.Evaluate(progress);
-		planetTransform.localPosition = new Vector3(position.x, 0f, position.y);
+	public Vector3 SetPosition(int index, float progress) {
+		Vector2 position = System.Orbits[index].OrbitShape.Evaluate(progress);
+		return System.PlanetTransforms[index].localPosition = new Vector3(position.x, 0f, position.y);
 	}
 	
 	public IEnumerator AnimateOrbit(int index) {
-		if(System.Planets[index].OrbitalPeriod < 0.1f) {
-			System.Planets[index].OrbitalPeriod = 0.1f;
+		if(System.Planets[index].OrbitalPeriod < 0.01f) {
+			System.Planets[index].OrbitalPeriod = 0.01f;
 		}
 		while(true)
 		{
@@ -41,7 +40,7 @@ public class PlanetController : MonoBehaviour {
 			System.Planets[index].OrbitalProgress += Time.deltaTime * orbitalSpeed;
 			System.Planets[index].OrbitalProgress %= 1f;
 			if(!StellarSystem.IsPaused)
-				SetPosition(System.Orbits[index].OrbitShape, System.PlanetTransforms[index], System.Planets[index].OrbitalProgress);
+				SetPosition(index, System.Planets[index].OrbitalProgress);
 			yield return null;
 		}
 	}
