@@ -54,12 +54,16 @@ public class TimeAxisController : MonoBehaviour {
 		if(timeAxisSlider.value < now)
 			timeAxisSlider.value = now;
 
-		float timeDifference = StellarSystem.GameDuration - (1-timeAxisSlider.value) * StellarSystem.GameDuration;
-		Debug.Log(timeDifference);
+		float projectedTime = StellarSystem.GameDuration - (1-timeAxisSlider.value) * StellarSystem.GameDuration;
+		TimeSpan projectedTimeSpan =  TimeSpan.FromSeconds(projectedTime);
+		timeStopped.text = projectedTimeSpan.Minutes.ToString("00") + ':' + projectedTimeSpan.Seconds.ToString("00");
+
+		// satisfactory precision only in range of 5 minutes
+
 		for(int i = 0; i < planetController.System.Planets.Count; i++) {
 			float projectedProgress = planetController.System.Planets[i].OrbitalProgress;
-			for(float time = 0; time <= timeDifference; time += Time.deltaTime) {
-				float distanceFromStar = Vector3.Distance(planetController.System.PlanetTransforms[i].position, new Vector3());
+			for(float time = 0; time <= (projectedTime - StellarSystem.GameTime); time += Time.deltaTime) {
+				float distanceFromStar = Vector3.Distance(planetController.GetPosition(i, projectedProgress), new Vector3());
 				float orbitalSpeed = (planetController.GameSpeed/100) * 
 														((i+1) / (planetController.System.Planets[i].OrbitalPeriod * distanceFromStar));
 				projectedProgress += Time.deltaTime * orbitalSpeed;

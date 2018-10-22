@@ -24,9 +24,14 @@ public class PlanetController : MonoBehaviour {
 		}
 	}
 
-	public Vector3 SetPosition(int index, float progress) {
+	public Vector3 GetPosition(int index, float progress) {
 		Vector2 position = System.Orbits[index].OrbitShape.Evaluate(progress);
-		return System.PlanetTransforms[index].localPosition = new Vector3(position.x, 0f, position.y);
+		return new Vector3(position.x, 0f, position.y);
+	}
+
+	public void SetPosition(int index, float progress) {
+		Vector2 position = System.Orbits[index].OrbitShape.Evaluate(progress);
+		System.PlanetTransforms[index].localPosition = new Vector3(position.x, 0f, position.y);
 	}
 	
 	public IEnumerator AnimateOrbit(int index) {
