@@ -39,7 +39,7 @@ public class PlanetController : MonoBehaviour
   {
     if (!StellarSystem.IsPaused && (now = Time.time) - LastUpdate >= timeQuantum)
     {
-      StartCoroutine(UpdatePlanetPositions(now));
+      UpdatePlanetPositions(now);
       LastUpdate = Time.time;
     }
   }
@@ -56,7 +56,7 @@ public class PlanetController : MonoBehaviour
     System.PlanetTransforms[index].localPosition = new Vector3(position.x, 0f, position.y);
   }
 
-  public IEnumerator UpdatePlanetPositions(float targetTime)
+  public void UpdatePlanetPositions(float targetTime)
   {
     for (int i = 0; i < System.Planets.Count; i++) {
       for (float time = LastUpdate; time <= targetTime; time += timeQuantum)
@@ -68,9 +68,8 @@ public class PlanetController : MonoBehaviour
       }
       SetPosition(i, System.Planets[i].OrbitalProgress);
 		}
-		yield return null;
   }
-  public IEnumerator PredictPlanetPositions(float targetTime)
+  public void PredictPlanetPositions(float targetTime)
   {
     float[] predictedProgress = new float[System.Planets.Count];
     for (int i = 0; i < System.Planets.Count; i++)
@@ -85,6 +84,5 @@ public class PlanetController : MonoBehaviour
       }
       SetPosition(i, predictedProgress[i]);
     }
-		yield return null;
   }
 }

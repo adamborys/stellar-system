@@ -67,7 +67,7 @@ public class TimeAxisController : MonoBehaviour
     TimeSpan projectedTimeSpan = TimeSpan.FromSeconds(projectedTime);
     timeStopped.text = projectedTimeSpan.Minutes.ToString("00") + ':' + projectedTimeSpan.Seconds.ToString("00");
 
-		StartCoroutine(planetController.PredictPlanetPositions(projectedTime));
+		planetController.PredictPlanetPositions(projectedTime);
   }
   private IEnumerator CountTime()
   {
