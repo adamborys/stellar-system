@@ -66,7 +66,7 @@ public class MenuController : MonoBehaviour
   private void isStrangeToggleChange()
   {
     if (isStrange.isOn)
-      systemCreator.AngleDispersion = 0.2f;
+      systemCreator.AngleDispersion = 0.1f;
     else
       systemCreator.AngleDispersion = 0.05f;
     systemCreator.CalculateOrbits();

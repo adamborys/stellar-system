@@ -8,8 +8,8 @@ public class PlanetController : MonoBehaviour
   [Range(0, 100)]
   public StellarSystem System;
   public float GameSpeed = 1;
-  public float StartTime;
-  public float LastUpdate;
+  public static float StartTime;
+  public static float LastUpdate;
 
   private GameObject systemOrigin;
   private float now;
@@ -31,13 +31,11 @@ public class PlanetController : MonoBehaviour
       }
       SetPosition(i, System.Planets[i].OrbitalProgress);
     }
-    StartTime = Time.time;
-    LastUpdate = Time.time;
   }
 
   void Update()
   {
-    if (!StellarSystem.IsPaused && (now = Time.time) - LastUpdate >= timeQuantum)
+    if (StellarSystem.IsStarted && !StellarSystem.IsPaused && (now = Time.time) - LastUpdate > timeQuantum)
     {
       UpdatePlanetPositions(now);
       LastUpdate = Time.time;
@@ -59,7 +57,7 @@ public class PlanetController : MonoBehaviour
   public void UpdatePlanetPositions(float targetTime)
   {
     for (int i = 0; i < System.Planets.Count; i++) {
-      for (float time = LastUpdate; time <= targetTime; time += timeQuantum)
+      for (float time = LastUpdate; time < targetTime; time += timeQuantum)
       {
         float distanceFromStar = Vector3.Distance(System.PlanetTransforms[i].position, new Vector3());
         float orbitalSpeed = (GameSpeed / 100) * ((i + 1) / (System.Planets[i].OrbitalPeriod * distanceFromStar));
@@ -75,9 +73,9 @@ public class PlanetController : MonoBehaviour
     for (int i = 0; i < System.Planets.Count; i++)
     {
       predictedProgress[i] = System.Planets[i].OrbitalProgress;
-      for (float time = LastUpdate; time <= targetTime; time += timeQuantum)
+      for (float time = LastUpdate; time < targetTime; time += timeQuantum)
       {
-        float distanceFromStar = Vector3.Distance(System.PlanetTransforms[i].position, new Vector3());
+        float distanceFromStar = Vector3.Distance(GetPosition(i, predictedProgress[i]), new Vector3());
         float orbitalSpeed = (GameSpeed / 100) * ((i + 1) / (System.Planets[i].OrbitalPeriod * distanceFromStar));
         predictedProgress[i] += timeQuantum * orbitalSpeed;
         predictedProgress[i] %= 1f;

@@ -12,6 +12,7 @@ public class StellarSystem
   public static float GameSpeed = 0;
   public static float GameTime = 0;
   public static float GameDuration = 900f;
+  public static bool IsStarted = false;
   public static bool IsPaused = false;
 
   public StellarSystem(SystemCreator creator, GameObject origin)
