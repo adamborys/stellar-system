@@ -30,9 +30,6 @@ public class TimeAxisController : MonoBehaviour {
 		gameEnd =  GameObject.Find("GameEnd");
 		gameEnd.SetActive(false);
 		StartCoroutine(startTime());
-		for(int i = 0; i < planetController.System.Planets.Count; i++) {
-			StartCoroutine(planetController.AnimateOrbit(i));
-		}
 	}
 	
 	void toggleChange() {
@@ -57,25 +54,16 @@ public class TimeAxisController : MonoBehaviour {
 		float projectedTime = StellarSystem.GameDuration - (1-timeAxisSlider.value) * StellarSystem.GameDuration;
 		TimeSpan projectedTimeSpan =  TimeSpan.FromSeconds(projectedTime);
 		timeStopped.text = projectedTimeSpan.Minutes.ToString("00") + ':' + projectedTimeSpan.Seconds.ToString("00");
+		
+		//TODO - przesunięcie w czasie
+    throw new NotImplementedException();
+  }
 
-		// satisfactory precision only in range of 5 minutes
-
-		for(int i = 0; i < planetController.System.Planets.Count; i++) {
-			float projectedProgress = planetController.System.Planets[i].OrbitalProgress;
-			for(float time = 0; time <= (projectedTime - StellarSystem.GameTime); time += Time.deltaTime) {
-				float distanceFromStar = Vector3.Distance(planetController.GetPosition(i, projectedProgress), new Vector3());
-				float orbitalSpeed = (planetController.GameSpeed/100) * 
-														((i+1) / (planetController.System.Planets[i].OrbitalPeriod * distanceFromStar));
-				projectedProgress += Time.deltaTime * orbitalSpeed;
-				projectedProgress %= 1f;
-			}
-			planetController.SetPosition(i, projectedProgress);
-		}
-	}
-
-	private IEnumerator startTime() {
+  private IEnumerator startTime() {
 		while(StellarSystem.GameTime < StellarSystem.GameDuration)
 		{
+			//TODO - czy trzeba to zrealizować inaczej niż przez deltaTime
+    	throw new NotImplementedException();
 			StellarSystem.GameTime += Time.deltaTime;
 			yield return null;
 		}

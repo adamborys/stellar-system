@@ -9,8 +9,10 @@ public class PlanetController : MonoBehaviour {
 	public StellarSystem System;
 	
 	private GameObject systemOrigin;
-
-	private GameObject prefab;
+	private float startTime;
+	private float lastUpdate;
+	private float now;
+  private const float timeQuantum = 0.025f;
 
 
 	void Start () {
@@ -18,9 +20,21 @@ public class PlanetController : MonoBehaviour {
 	  SystemCreator systemCreator = systemOrigin.GetComponent<SystemCreator>();
 
 		System = new StellarSystem(systemCreator, systemOrigin);
-
+		
 		for(int i = 0; i < systemCreator.PlanetQuantity; i++) {
+			if(System.Planets[i].OrbitalPeriod < 0.01f) {
+				System.Planets[i].OrbitalPeriod = 0.01f;
+			}
 			SetPosition(i, System.Planets[i].OrbitalProgress);
+		}
+		startTime = Time.time;
+		lastUpdate = Time.time;
+	}
+
+	void Update () {
+		if(!StellarSystem.IsPaused && (now = Time.time) - lastUpdate >= timeQuantum) {
+			UpdatePlanetPositions(now);
+			lastUpdate = Time.time;
 		}
 	}
 
@@ -34,19 +48,14 @@ public class PlanetController : MonoBehaviour {
 		System.PlanetTransforms[index].localPosition = new Vector3(position.x, 0f, position.y);
 	}
 	
-	public IEnumerator AnimateOrbit(int index) {
-		if(System.Planets[index].OrbitalPeriod < 0.01f) {
-			System.Planets[index].OrbitalPeriod = 0.01f;
-		}
-		while(true)
-		{
-			float distanceFromStar = Vector3.Distance(System.PlanetTransforms[index].position, new Vector3());
-			float orbitalSpeed = (GameSpeed/100) * ((index+1) / (System.Planets[index].OrbitalPeriod * distanceFromStar));
-			System.Planets[index].OrbitalProgress += Time.deltaTime * orbitalSpeed;
-			System.Planets[index].OrbitalProgress %= 1f;
-			if(!StellarSystem.IsPaused)
-				SetPosition(index, System.Planets[index].OrbitalProgress);
-			yield return null;
-		}
+	public void UpdatePlanetPositions(float targetTime) {
+		for(int i = 0; i < System.Planets.Count; i++)
+			for(float time = lastUpdate; time <= targetTime; time += timeQuantum) {
+				float distanceFromStar = Vector3.Distance(System.PlanetTransforms[i].position, new Vector3());
+				float orbitalSpeed = (GameSpeed/100) * ((i+1) / (System.Planets[i].OrbitalPeriod * distanceFromStar));
+				System.Planets[i].OrbitalProgress += timeQuantum * orbitalSpeed;
+				System.Planets[i].OrbitalProgress %= 1f;
+				SetPosition(i, System.Planets[i].OrbitalProgress);
+			}
 	}
 }
