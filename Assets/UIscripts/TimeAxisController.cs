@@ -29,7 +29,7 @@ public class TimeAxisController : MonoBehaviour {
 		planetController = GameObject.Find("SystemOrigin").GetComponent<PlanetController>();
 		gameEnd =  GameObject.Find("GameEnd");
 		gameEnd.SetActive(false);
-		StartCoroutine(startTime());
+		StartCoroutine(CountTime());
 	}
 	
 	void toggleChange() {
@@ -59,13 +59,11 @@ public class TimeAxisController : MonoBehaviour {
     throw new NotImplementedException();
   }
 
-  private IEnumerator startTime() {
+  private IEnumerator CountTime() {
 		while(StellarSystem.GameTime < StellarSystem.GameDuration)
 		{
-			//TODO - czy trzeba to zrealizować inaczej niż przez deltaTime
-    	throw new NotImplementedException();
-			StellarSystem.GameTime += Time.deltaTime;
-			yield return null;
+			StellarSystem.GameTime = planetController.LastUpdate - planetController.StartTime;
+			yield return new WaitForSeconds(1);
 		}
 		timeAxisSlider.value = 0;
 		timeStopped.enabled = false;

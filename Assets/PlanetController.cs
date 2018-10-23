@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlanetController : MonoBehaviour {
 
 	[Range(0,100)]
-	public float GameSpeed = 1;
 	public StellarSystem System;
+	public float GameSpeed = 1;
+	public float StartTime;
+	public float LastUpdate;
 	
 	private GameObject systemOrigin;
-	private float startTime;
-	private float lastUpdate;
 	private float now;
   private const float timeQuantum = 0.025f;
 
@@ -27,14 +27,14 @@ public class PlanetController : MonoBehaviour {
 			}
 			SetPosition(i, System.Planets[i].OrbitalProgress);
 		}
-		startTime = Time.time;
-		lastUpdate = Time.time;
+		StartTime = Time.time;
+		LastUpdate = Time.time;
 	}
 
 	void Update () {
-		if(!StellarSystem.IsPaused && (now = Time.time) - lastUpdate >= timeQuantum) {
+		if(!StellarSystem.IsPaused && (now = Time.time) - LastUpdate >= timeQuantum) {
 			UpdatePlanetPositions(now);
-			lastUpdate = Time.time;
+			LastUpdate = Time.time;
 		}
 	}
 
@@ -50,7 +50,7 @@ public class PlanetController : MonoBehaviour {
 	
 	public void UpdatePlanetPositions(float targetTime) {
 		for(int i = 0; i < System.Planets.Count; i++)
-			for(float time = lastUpdate; time <= targetTime; time += timeQuantum) {
+			for(float time = LastUpdate; time <= targetTime; time += timeQuantum) {
 				float distanceFromStar = Vector3.Distance(System.PlanetTransforms[i].position, new Vector3());
 				float orbitalSpeed = (GameSpeed/100) * ((i+1) / (System.Planets[i].OrbitalPeriod * distanceFromStar));
 				System.Planets[i].OrbitalProgress += timeQuantum * orbitalSpeed;
