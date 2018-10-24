@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Entities;
-using Unity.Collections;
 
 public class PlanetController : MonoBehaviour
 {
@@ -12,7 +10,6 @@ public class PlanetController : MonoBehaviour
   public float GameSpeed = 1;
   public static float StartTime;
   public static float LastUpdate;
-  public NativeList<float> dupa;
 
   private GameObject systemOrigin;
   private float now;
@@ -32,7 +29,7 @@ public class PlanetController : MonoBehaviour
       {
         System.Planets[i].OrbitalPeriod = 0.01f;
       }
-      SetPosition(i, System.Planets[i].OrbitalProgress);
+      SetPosition(i, System.PlanetProgresses[i]);
     }
   }
 
@@ -64,10 +61,10 @@ public class PlanetController : MonoBehaviour
       {
         float distanceFromStar = Vector3.Distance(System.PlanetTransforms[i].position, new Vector3());
         float orbitalSpeed = (GameSpeed / 100) * ((i + 1) / (System.Planets[i].OrbitalPeriod * distanceFromStar));
-        System.Planets[i].OrbitalProgress += timeQuantum * orbitalSpeed;
-        System.Planets[i].OrbitalProgress %= 1f;
+        System.PlanetProgresses[i] += timeQuantum * orbitalSpeed;
+        System.PlanetProgresses[i] %= 1f;
       }
-      SetPosition(i, System.Planets[i].OrbitalProgress);
+      SetPosition(i, System.PlanetProgresses[i]);
 		}
   }
   public void PredictPlanetPositions(float targetTime)
@@ -75,7 +72,7 @@ public class PlanetController : MonoBehaviour
     float[] predictedProgress = new float[System.Planets.Count];
     for (int i = 0; i < System.Planets.Count; i++)
     {
-      predictedProgress[i] = System.Planets[i].OrbitalProgress;
+      predictedProgress[i] = System.PlanetProgresses[i];
       for (float time = LastUpdate; time < targetTime; time += timeQuantum)
       {
         float distanceFromStar = Vector3.Distance(GetPosition(i, predictedProgress[i]), new Vector3());
