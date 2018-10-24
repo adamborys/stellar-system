@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Entities;
+using Unity.Collections;
 
 public class PlanetController : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class PlanetController : MonoBehaviour
   public float GameSpeed = 1;
   public static float StartTime;
   public static float LastUpdate;
+  public NativeList<float> dupa;
 
   private GameObject systemOrigin;
   private float now;
