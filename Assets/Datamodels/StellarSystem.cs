@@ -10,6 +10,7 @@ public class StellarSystem
   public List<Planet> Planets;
   public List<Transform> PlanetTransforms;
   public List<float> PlanetProgresses;
+  public static int PlanetQuantity;
   public static float GameSpeed = 0;
   public static float GameTime = 0;
   public static float GameDuration = 900f;
@@ -22,9 +23,10 @@ public class StellarSystem
     this.Planets = new List<Planet>();
     this.PlanetTransforms = new List<Transform>();
     this.PlanetProgresses = new List<float>();
+    PlanetQuantity = creator.PlanetQuantity;
 
     System.Random randomizer = new System.Random();
-    for (int i = 0; i < creator.PlanetQuantity; i++)
+    for (int i = 0; i < PlanetQuantity; i++)
     {
       Planets.Add(new Planet(i, randomizer));
 
