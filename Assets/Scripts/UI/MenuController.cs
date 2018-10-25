@@ -49,8 +49,8 @@ public class MenuController : MonoBehaviour
 
   private void planetSliderChange()
   {
-    systemCreator.PlanetQuantity = (int)planetSlider.value;
-    planetQuantityText.text = systemCreator.PlanetQuantity.ToString();
+    StellarSystem.PlanetQuantity = (int)planetSlider.value;
+    planetQuantityText.text = StellarSystem.PlanetQuantity.ToString();
     systemCreator.CalculateOrbits();
   }
 

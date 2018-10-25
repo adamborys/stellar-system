@@ -12,7 +12,8 @@ public class TimeAxisController : MonoBehaviour
   private Text timeEnd;
   private PlanetController planetController;
   private GameObject gameEnd;
-  private float now;
+  private float startSliderValue;
+  private float[] stoppedProgresses;
 
   void Start()
   {
@@ -42,7 +43,13 @@ public class TimeAxisController : MonoBehaviour
   {
     if (isTimeAxisEnabled.isOn)
     {
-      now = StellarSystem.GameTime / StellarSystem.GameDuration;
+      startSliderValue = StellarSystem.GameTime / StellarSystem.GameDuration;
+      stoppedProgresses = new float[StellarSystem.PlanetQuantity];
+
+      for(int i = 0; i < StellarSystem.PlanetQuantity; i++) {
+        stoppedProgresses[i] = planetController.System.PlanetProgresses[i];
+      }
+
       TimeSpan time = TimeSpan.FromSeconds(StellarSystem.GameTime);
       timeStopped.text = time.Minutes.ToString("00") + ':' + time.Seconds.ToString("00");
       timeAxisSlider.value = StellarSystem.GameTime / StellarSystem.GameDuration;
@@ -58,18 +65,19 @@ public class TimeAxisController : MonoBehaviour
   }
   void sliderChange()
   {
-    if (timeAxisSlider.value < now)
-      timeAxisSlider.value = now;/*
-    else if (StellarSystem.GameDuration == 900f && timeAxisSlider.value - now > 0.33)
-      timeAxisSlider.value = now + 0.33f;
-    else if (StellarSystem.GameDuration == 1800f && timeAxisSlider.value - now > 0.25)
-      timeAxisSlider.value = now + 0.25f; */
+    if (timeAxisSlider.value < startSliderValue)
+      timeAxisSlider.value = startSliderValue;/*
+    else if (StellarSystem.GameDuration == 900f && timeAxisSlider.value - startSliderValue > 0.33)
+      timeAxisSlider.value = startSliderValue + 0.33f;
+    else if (StellarSystem.GameDuration == 1800f && timeAxisSlider.value - startSliderValue > 0.25)
+      timeAxisSlider.value = startSliderValue + 0.25f; */
 
+    float stopTime = StellarSystem.GameDuration * startSliderValue;
     float projectedTime = StellarSystem.GameDuration - (1 - timeAxisSlider.value) * StellarSystem.GameDuration;
     TimeSpan projectedTimeSpan = TimeSpan.FromSeconds(projectedTime);
     timeStopped.text = projectedTimeSpan.Minutes.ToString("00") + ':' + projectedTimeSpan.Seconds.ToString("00");
 
-    planetController.PredictPlanetPositions(projectedTime);
+    planetController.PredictPlanetPositions(stopTime, projectedTime, stoppedProgresses);
   }
   private IEnumerator CountTime()
   {
