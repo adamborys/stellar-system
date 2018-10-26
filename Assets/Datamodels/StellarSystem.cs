@@ -31,10 +31,10 @@ public class StellarSystem
       Planets.Add(new Planet(i, randomizer));
 
       this.Orbits.Add(creator.Orbits[i].GetComponent<OrbitProvider>());
-
       GameObject planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
       planet.name = "Planet";
       planet.transform.localScale = new Vector3(this.Planets[i].Scale, this.Planets[i].Scale, this.Planets[i].Scale);
+      planet.GetComponent<SphereCollider>().radius = 1f;
 
       this.PlanetTransforms.Add(planet.transform);
       this.PlanetTransforms[i].parent = creator.Orbits[i].transform;
