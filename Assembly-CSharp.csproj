@@ -53,10 +53,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CameraMovement.cs" />
      <Compile Include="Assets\Datamodels\Ellipse.cs" />
      <Compile Include="Assets\Datamodels\Planet.cs" />
      <Compile Include="Assets\Datamodels\StellarSystem.cs" />
+     <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\Stellar\OrbitProvider.cs" />
      <Compile Include="Assets\Scripts\Stellar\PlanetController.cs" />
      <Compile Include="Assets\Scripts\Stellar\SystemCreator.cs" />

@@ -49,8 +49,8 @@ public class MenuController : MonoBehaviour
 
   private void planetSliderChange()
   {
-    StellarSystem.PlanetQuantity = (int)planetSlider.value;
-    planetQuantityText.text = StellarSystem.PlanetQuantity.ToString();
+    systemCreator.PlanetQuantity = (int)planetSlider.value;
+    planetQuantityText.text = (StellarSystem.PlanetQuantity = systemCreator.PlanetQuantity).ToString();
     systemCreator.CalculateOrbits();
   }
 
@@ -76,6 +76,8 @@ public class MenuController : MonoBehaviour
   {
     GameObject system = GameObject.Find("SystemOrigin");
     Destroy(system.GetComponent<SystemCreator>());
+    SystemCreator.EditorCameraPosition = Camera.main.transform.position;
+    SystemCreator.EditorCameraRotation = Camera.main.transform.rotation;
     StartCoroutine(loadStellarSceneWithGameObjectTransferAsync(system));
   }
 

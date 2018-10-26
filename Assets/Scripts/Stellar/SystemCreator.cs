@@ -14,6 +14,9 @@ public class SystemCreator : MonoBehaviour {
 	[Range(0f,0.5f)]
 	public float AngleDispersion;
 
+	public static Vector3 EditorCameraPosition;
+	public static Quaternion EditorCameraRotation;
+
 	public GameObject Prefab;
 	public List<GameObject> Orbits;
 
@@ -32,12 +35,14 @@ public class SystemCreator : MonoBehaviour {
 
 	public void CalculateOrbits() {
 		// Czyszczenie obiektów z poprzedniej instancji
-		Destroy(gameObject.GetComponent<PlanetController>());
+		foreach(GameObject orbit in Orbits)
+			Destroy(orbit);
 		Orbits.Clear();
-		foreach (Transform child in transform) {
+		foreach(PlanetController planetController in gameObject.GetComponents<PlanetController>())
+			Destroy(planetController);
+		foreach (Transform child in transform)
 			if(child.transform.gameObject.name != "Star")
 				GameObject.Destroy(child.gameObject);
-		}
 		
 		System.Random rand = new System.Random();
 		xAxis = yAxis = 8 + 10 * SizeDispersion;
