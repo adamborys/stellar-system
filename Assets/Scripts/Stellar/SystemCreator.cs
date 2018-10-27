@@ -34,6 +34,7 @@ public class SystemCreator : MonoBehaviour {
 	}
 
 	public void CalculateOrbits() {
+    Camera.main.transform.parent = null;
 		// Czyszczenie obiektów z poprzedniej instancji
 		foreach(GameObject orbit in Orbits)
 			Destroy(orbit);
@@ -119,5 +120,6 @@ public class SystemCreator : MonoBehaviour {
 			yAxis += 6 + 20 * SizeDispersion;
 		}
 		gameObject.AddComponent<PlanetController>();
+    Camera.main.transform.parent = transform;
 	}
 }

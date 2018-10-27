@@ -74,11 +74,11 @@ public class MenuController : MonoBehaviour
 
   private void createSystem()
   {
-    GameObject system = GameObject.Find("SystemOrigin");
-    Destroy(system.GetComponent<SystemCreator>());
+    Destroy(systemCreator);
     SystemCreator.EditorCameraPosition = Camera.main.transform.position;
     SystemCreator.EditorCameraRotation = Camera.main.transform.rotation;
-    StartCoroutine(loadStellarSceneWithGameObjectTransferAsync(system));
+    Destroy(Camera.main.gameObject);
+    StartCoroutine(loadStellarSceneWithGameObjectTransferAsync(GameObject.Find("SystemOrigin")));
   }
 
   private IEnumerator loadStellarSceneWithGameObjectTransferAsync(GameObject transferredGameObject)

@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-  public static bool IsCameraLocked = false;
-  public static Transform ObservedTransform;
-  public static Vector3 Offset = new Vector3();
+  public static bool IsLocked = false;
   private GameObject dummyCamera;
   private float mouseRotationX, mouseRotationY, zoom;
   
   void Start()
   {
-    ObservedTransform = GameObject.Find("SystemOrigin").transform;
-    Offset = ObservedTransform.position;
-    transform.LookAt(ObservedTransform);
     if (StellarSystem.IsStarted)
     {
       transform.position = SystemCreator.EditorCameraPosition;
@@ -24,7 +19,7 @@ public class CameraMovement : MonoBehaviour
   
   void Update()
   {
-    if (!IsCameraLocked)
+    if (!IsLocked)
     {
       if (Input.GetMouseButton(2))
       {
@@ -35,20 +30,20 @@ public class CameraMovement : MonoBehaviour
 
         mouseRotationY = Input.GetAxis("Mouse Y");
         dummyTransform.Translate(Vector3.up * -mouseRotationY * 2);
-        dummyTransform.LookAt(ObservedTransform);
+        dummyTransform.LookAt(transform.parent);
         
-        float x = dummyTransform.rotation.eulerAngles.x;
+        float x = dummyTransform.localRotation.eulerAngles.x;
         if((0 <= x && x <= 70) || (290 <= x && x < 360))
         {
-          transform.position = dummyTransform.position;
-          transform.rotation = dummyTransform.rotation;
+          transform.localPosition = dummyTransform.localPosition;
+          transform.localRotation = dummyTransform.localRotation;
         }
         Destroy(dummyCamera);
       }
-      if ((Input.GetAxis("Mouse ScrollWheel") > 0 && Vector3.Distance(transform.position, new Vector3(0, 0, 0)) > 10f) ||
-      (Input.GetAxis("Mouse ScrollWheel") < 0 && Vector3.Distance(transform.position, new Vector3(0, 0, 0)) < 200f))
+      if ((Input.GetAxis("Mouse ScrollWheel") > 0 && Vector3.Distance(transform.localPosition, new Vector3(0, 0, 0)) > 10f) ||
+      (Input.GetAxis("Mouse ScrollWheel") < 0 && Vector3.Distance(transform.localPosition, new Vector3(0, 0, 0)) < 200f))
       {
-        transform.position += transform.forward * Input.mouseScrollDelta.y * 2f;
+        transform.localPosition += transform.forward * Input.mouseScrollDelta.y * 2f;
       }
     }
   }
