@@ -34,22 +34,26 @@ public class SystemCreator : MonoBehaviour {
 	}
 
 	public void CalculateOrbits() {
-    Camera.main.transform.parent = null;
 		// Czyszczenie obiektów z poprzedniej instancji
 		foreach(GameObject orbit in Orbits)
 			Destroy(orbit);
+
 		Orbits.Clear();
+
 		foreach(PlanetController planetController in gameObject.GetComponents<PlanetController>())
 			Destroy(planetController);
+
 		foreach (Transform child in transform)
-			if(child.transform.gameObject.name != "Star")
+		{
+			string name = child.transform.gameObject.name;
+			if(name != "Star" && name != "Main Camera" && name != "Point Light")
 				GameObject.Destroy(child.gameObject);
+		}
 		
 		System.Random rand = new System.Random();
 		xAxis = yAxis = 8 + 10 * SizeDispersion;
 
 		for(int i = 0; i < PlanetQuantity; i++) {
-			
 			// Stworzenie orbit oraz podpięcie transforma pod układ planetarny
 			Orbits.Add(Instantiate(Prefab) as GameObject);
 			Orbits[i].name = "Orbit" + i;
@@ -120,6 +124,5 @@ public class SystemCreator : MonoBehaviour {
 			yAxis += 6 + 20 * SizeDispersion;
 		}
 		gameObject.AddComponent<PlanetController>();
-    Camera.main.transform.parent = transform;
 	}
 }
