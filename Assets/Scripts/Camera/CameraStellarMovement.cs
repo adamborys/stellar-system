@@ -27,19 +27,14 @@ public class CameraStellarMovement : MonoBehaviour
         dummyCamera = Instantiate(transform.gameObject);
         Transform dummyTransform = dummyCamera.transform;
         dummyTransform.SetParent(transform.parent, false);
-        float mouseRotationX = Input.GetAxis("Mouse X");
-        dummyTransform.Translate(Vector3.right * -mouseRotationX * distance/25);
-
-        float mouseRotationY = Input.GetAxis("Mouse Y");
-        dummyTransform.Translate(Vector3.up * -mouseRotationY * distance/25);
-        dummyTransform.LookAt(transform.parent);
-
-        //fix increasing distance due to translation
-        //dummyTransform.localPosition += transform.forward * Input.mouseScrollDelta.y * 5f;
+        dummyTransform.RotateAround(transform.parent.position, Vector3.up, Input.GetAxis("Mouse X") * 2f);
+        dummyTransform.RotateAround(transform.parent.position, dummyTransform.right, Input.GetAxis("Mouse Y") * -2f);
+        dummyTransform.rotation = Quaternion.Euler(dummyTransform.rotation.eulerAngles.x, dummyTransform.rotation.eulerAngles.y, 0f);
         
-        float x = dummyTransform.localRotation.eulerAngles.x;
+        float x = dummyTransform.rotation.eulerAngles.x;
         if((0 <= x && x <= 70) || (290 <= x && x < 360))
         {
+          transform.LookAt(transform.parent);
           transform.localPosition = dummyTransform.localPosition;
           transform.localRotation = dummyTransform.localRotation;
         }
