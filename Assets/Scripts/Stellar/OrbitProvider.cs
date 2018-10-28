@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class OrbitProvider : MonoBehaviour {
 
-	[Range(3,36)]
 	public int Segments;
 	public Ellipse OrbitShape;
 	public Planet Planet;
