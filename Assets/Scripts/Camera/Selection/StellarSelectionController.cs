@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectionController : MonoBehaviour
+public class StellarSelectionController : MonoBehaviour
 {
     private RaycastHit hit;
     private Ray ray;
@@ -16,14 +16,14 @@ public class SelectionController : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
-            CameraMovement.IsLocked = true;
+            CameraStellarMovement.IsLocked = true;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit)) {
                 gameObject.transform.SetParent(hit.transform, false);
             }
             else
                 gameObject.transform.SetParent(systemOriginTransform, false);
-            CameraMovement.IsLocked = false;
+            CameraStellarMovement.IsLocked = false;
         }
     }
 }

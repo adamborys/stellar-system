@@ -6,9 +6,7 @@ public class SystemCreator : MonoBehaviour {
 
 	[Range(2,10)]
 	public int PlanetQuantity;
-
-	[Range(3,128)]
-	public int RenderedSegments;
+	public int MaxRenderedSegments;
 	[Range(0f,0.2f)]
 	public float SizeDispersion;
 	[Range(0f,0.5f)]
@@ -50,7 +48,12 @@ public class SystemCreator : MonoBehaviour {
 				GameObject.Destroy(child.gameObject);
 		}
 		
+		// Ustawienia ilości segmentów dodawanych z każdym przyrostem pętli
+		// Im większa orbita, tym więcej segmentów by wygładzić
+		int segmentsAddingComponent = MaxRenderedSegments/(PlanetQuantity*2);
 		System.Random rand = new System.Random();
+
+		// Wielkość pierwszej orbity
 		xAxis = yAxis = 8 + 10 * SizeDispersion;
 
 		for(int i = 0; i < PlanetQuantity; i++) {
@@ -98,7 +101,7 @@ public class SystemCreator : MonoBehaviour {
 
 			OrbitProvider orbitProvider = Orbits[i].GetComponent<OrbitProvider>();
 			orbitProvider.OrbitShape = new Ellipse(xAxisResized,yAxisResized);
-			orbitProvider.Segments = (RenderedSegments/2) + (RenderedSegments/2)*(i/(PlanetQuantity-1));
+			orbitProvider.Segments = (MaxRenderedSegments/2) + ((i+1)*segmentsAddingComponent);
 
 			// Zasymulowanie pierwszego prawa Keplera
 			float focalDistance = orbitProvider.OrbitShape.FocalDistance;

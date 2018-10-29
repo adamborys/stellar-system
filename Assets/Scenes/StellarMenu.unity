@@ -1651,7 +1651,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 15 minutes
+  m_Text: 30 minutes
 --- !u!222 &968713844
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2640,7 +2640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlanetQuantity: 5
-  RenderedSegments: 128
+  MaxRenderedSegments: 128
   SizeDispersion: 0.2
   AngleDispersion: 0.05
   Prefab: {fileID: 1427642699897798, guid: f01deb805133bae449e709de8332ad45, type: 3}
@@ -2748,9 +2748,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: 15 minutes
-      m_Image: {fileID: 0}
     - m_Text: 30 minutes
+      m_Image: {fileID: 0}
+    - m_Text: 60 minutes
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
