@@ -56,11 +56,11 @@
      <Compile Include="Assets\Datamodels\Ellipse.cs" />
      <Compile Include="Assets\Datamodels\Planet.cs" />
      <Compile Include="Assets\Datamodels\StellarSystem.cs" />
-     <Compile Include="Assets\Scripts\Camera\CameraPlanetaryMovement.cs" />
-     <Compile Include="Assets\Scripts\Camera\CameraStellarMovement.cs" />
+     <Compile Include="Assets\Scripts\Camera\PlanetaryCameraMovement.cs" />
      <Compile Include="Assets\Scripts\Camera\Selection\PlanetarySelectionController.cs" />
      <Compile Include="Assets\Scripts\Camera\Selection\StellarSelectionController.cs" />
-     <Compile Include="Assets\Scripts\Planetary\GridRenderer.cs" />
+     <Compile Include="Assets\Scripts\Camera\StellarCameraMovement.cs" />
+     <Compile Include="Assets\Scripts\Planetary\GridController.cs" />
      <Compile Include="Assets\Scripts\Stellar\OrbitProvider.cs" />
      <Compile Include="Assets\Scripts\Stellar\PlanetController.cs" />
      <Compile Include="Assets\Scripts\Stellar\SystemCreator.cs" />
