@@ -4,9 +4,26 @@ using UnityEngine;
 
 public class GridRenderer : MonoBehaviour
 {
+    public int LineDrawDistance;
+    public Material Material;
     void Start()
     {
-                
+        for(int i = -LineDrawDistance; i < LineDrawDistance; i++)
+        {
+            GameObject lineX = new GameObject("LineX"+ i);
+            GameObject lineY = new GameObject("LineY"+ i);
+            LineRenderer lineXRenderer = lineX.AddComponent<LineRenderer>();
+            LineRenderer lineYRenderer = lineY.AddComponent<LineRenderer>();
+            if(i % 5 == 0)
+                lineXRenderer.startWidth = lineYRenderer.startWidth = lineXRenderer.endWidth = lineYRenderer.endWidth = 0.3f;
+            else
+            {
+                lineXRenderer.startWidth = lineYRenderer.startWidth = lineXRenderer.endWidth = lineYRenderer.endWidth = 0.15f;
+            }
+            lineXRenderer.material = lineYRenderer.material = Material;
+            lineXRenderer.SetPositions(new Vector3[] {new Vector3(-LineDrawDistance,0,i), new Vector3(LineDrawDistance,0,i)});
+            lineYRenderer.SetPositions(new Vector3[] {new Vector3(i,0,-LineDrawDistance), new Vector3(i,0,LineDrawDistance)});
+        }
     }
 
     // Update is called once per frame

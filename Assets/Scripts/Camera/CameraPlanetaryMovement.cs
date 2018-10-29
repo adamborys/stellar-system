@@ -42,9 +42,9 @@ public class CameraPlanetaryMovement : MonoBehaviour
       }
       float scroll = Input.GetAxis("Mouse ScrollWheel");
       distance = Vector3.Distance(transform.localPosition, transform.parent.position);
-      if ((scroll > 0 && distance > 10f) || (scroll < 0 && distance < 200f))
+      if ((scroll > 0 && distance > 5f) || (scroll < 0 && distance < 50f))
       {
-        transform.localPosition += transform.forward * Input.mouseScrollDelta.y * 5f;
+        transform.localPosition += transform.forward * Input.mouseScrollDelta.y;
       }
     }
   }
