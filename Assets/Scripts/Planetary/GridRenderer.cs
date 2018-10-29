@@ -11,7 +11,9 @@ public class GridRenderer : MonoBehaviour
         for(int i = -LineDrawDistance; i < LineDrawDistance; i++)
         {
             GameObject lineX = new GameObject("LineX"+ i);
+            lineX.transform.SetParent(transform);
             GameObject lineY = new GameObject("LineY"+ i);
+            lineY.transform.SetParent(transform);
             LineRenderer lineXRenderer = lineX.AddComponent<LineRenderer>();
             LineRenderer lineYRenderer = lineY.AddComponent<LineRenderer>();
             if(i % 5 == 0)
