@@ -24,7 +24,7 @@ public class PlanetarySelectionController : MonoBehaviour
   {
     if (Input.GetMouseButtonDown(0))
     {
-      CameraStellarMovement.IsLocked = true;
+      PlanetaryCameraMovement.IsLocked = true;
       ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
       if (Physics.Raycast(ray, out hit))
@@ -32,7 +32,7 @@ public class PlanetarySelectionController : MonoBehaviour
       else
         transform.SetParent(planetTransform, false);
 
-      CameraStellarMovement.IsLocked = false;
+      PlanetaryCameraMovement.IsLocked = false;
     }
     if (transform.parent.hasChanged)
     {

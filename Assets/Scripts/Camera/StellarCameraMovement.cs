@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraStellarMovement : MonoBehaviour
+public class StellarCameraMovement : MonoBehaviour
 {
   public static bool IsLocked = false;
   private GameObject dummyCamera;

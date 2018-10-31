@@ -16,14 +16,14 @@ public class StellarSelectionController : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
-            CameraStellarMovement.IsLocked = true;
+            StellarCameraMovement.IsLocked = true;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit)) {
                 gameObject.transform.SetParent(hit.transform, false);
             }
             else
                 gameObject.transform.SetParent(systemOriginTransform, false);
-            CameraStellarMovement.IsLocked = false;
+            StellarCameraMovement.IsLocked = false;
         }
     }
 }
