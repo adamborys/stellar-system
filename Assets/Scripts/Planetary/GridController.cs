@@ -5,70 +5,45 @@ using UnityEngine;
 public class GridController : MonoBehaviour
 {
     public int LineDrawDistance = 1000;
+    public int Interval = 5;
+    public int NarrowLinesInterval = 5;
+    public float NarrowLineWidth = 0.1f;
+    public float ThinLineWidth = 0.05f;
     public Material Material;
-    private List<LineRenderer> lineRenderers;
     void Start()
     {
-        lineRenderers = new List<LineRenderer>();
-        for(int i = -LineDrawDistance; i <= LineDrawDistance; i++)
+        if(LineDrawDistance % Interval != 0)
+            Debug.LogError("Interval should be divisor of LineDrawDistance!");
+        for(int i = -LineDrawDistance; i <= LineDrawDistance; i += Interval)
         {
-            GameObject lineX = new GameObject("LineX"+ i);
+            GameObject lineX = new GameObject("LineX"+ (i + LineDrawDistance));
             lineX.transform.SetParent(transform);
-            GameObject lineY = new GameObject("LineY"+ i);
+            GameObject lineY = new GameObject("LineY"+ (i + LineDrawDistance));
             lineY.transform.SetParent(transform);
 
-            // Co drugi renderer to linia należąca do tej samej osi
             LineRenderer lineXRenderer = lineX.AddComponent<LineRenderer>();
-            lineRenderers.Add(lineXRenderer);
             LineRenderer lineYRenderer = lineY.AddComponent<LineRenderer>();
-            lineRenderers.Add(lineYRenderer);
-            if(i % 10 == 0)
-                lineXRenderer.startWidth = lineYRenderer.startWidth = lineXRenderer.endWidth = lineYRenderer.endWidth = 0.1f;
+            if(i % (NarrowLinesInterval * Interval) == 0)
+                lineXRenderer.startWidth = lineYRenderer.startWidth = lineXRenderer.endWidth = lineYRenderer.endWidth = NarrowLineWidth;
             else
             {
-                lineXRenderer.startWidth = lineYRenderer.startWidth = lineXRenderer.endWidth = lineYRenderer.endWidth = 0.05f;
+                lineXRenderer.startWidth = lineYRenderer.startWidth = lineXRenderer.endWidth = lineYRenderer.endWidth = ThinLineWidth;
             }
             lineXRenderer.material = lineYRenderer.material = Material;
-        }
-    }
-    
-    public void AdjustGrid(Vector3 cameraParentPosition, int offsetX, int offsetZ)
-    {
-        for(int i = 0; i < (2 * LineDrawDistance) + 1; i++)
-        {
-            if(i % 2 == 0)
+
+            int segmentsCount = 2 * (LineDrawDistance / Interval) + 1;
+            Vector3[] xPositions = new Vector3[segmentsCount];
+            Vector3[] yPositions = new Vector3[segmentsCount];
+
+            for(int j = -LineDrawDistance, k = 0; j <= LineDrawDistance; j += Interval, k++)
             {
-                lineRenderers[i].SetPositions(
-                    new Vector3[] 
-                    {
-                        new Vector3(-LineDrawDistance + offsetX, 0, i - LineDrawDistance + offsetZ), 
-                        new Vector3(LineDrawDistance + offsetX, 0, i - LineDrawDistance + offsetZ)
-                    });
-                
-                if((i + offsetZ)% 10 == 0)
-                    lineRenderers[i].startWidth = lineRenderers[i].endWidth = 0.2f;
-                else
-                {
-                    lineRenderers[i].startWidth = lineRenderers[i].endWidth = 0.05f;
-                }
-                
+                xPositions[k] = new Vector3(j, 0, i);
+                yPositions[k] = new Vector3(i, 0, j);
             }
-            else
-            {
-                lineRenderers[i].SetPositions(
-                    new Vector3[] 
-                    {
-                        new Vector3(i - LineDrawDistance + offsetX, 0, -LineDrawDistance + offsetZ), 
-                        new Vector3(i - LineDrawDistance + offsetX, 0, LineDrawDistance + offsetZ)
-                    });
-                
-                if((i + offsetX) % 10 == 0)
-                    lineRenderers[i].startWidth = lineRenderers[i].endWidth = 0.2f;
-                else
-                {
-                    lineRenderers[i].startWidth = lineRenderers[i].endWidth = 0.05f;
-                }
-            }
+            
+            lineXRenderer.positionCount = lineYRenderer.positionCount = segmentsCount;
+            lineXRenderer.SetPositions(xPositions);
+            lineYRenderer.SetPositions(yPositions);
         }
     }
 }

@@ -155,7 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab7380dc8a095d4e9e5ff06e0b4a41f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LineDrawDistance: 20
+  LineDrawDistance: 1000
+  Interval: 5
+  NarrowLinesInterval: 10
+  NarrowLineWidth: 0.1
+  ThinLineWidth: 0.05
   Material: {fileID: 2100000, guid: 32e030e2e98e59a4889c96eda91d24e1, type: 2}
 --- !u!1 &1711034560
 GameObject:

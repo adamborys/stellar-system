@@ -8,16 +8,9 @@ public class PlanetarySelectionController : MonoBehaviour
   private Ray ray;
   private Transform planetTransform;
 
-  // Zmiana konfiguracji siatki jest zależna od poruszania się rodzica kamery
-  // który de facto ogranicza zmianę jej pozycji w grze
-  private GridController gridRenderer;
-  private int offsetX = 0, offsetZ = 0;
-
   void Start()
   {
     transform.parent = planetTransform = GameObject.Find("Planet").transform;
-    gridRenderer = GameObject.Find("Grid").GetComponent<GridController>();
-    gridRenderer.AdjustGrid(transform.parent.position, offsetX, offsetZ);
   }
 
   void Update()
@@ -33,16 +26,6 @@ public class PlanetarySelectionController : MonoBehaviour
         transform.SetParent(planetTransform, false);
 
       PlanetaryCameraMovement.IsLocked = false;
-    }
-    if (transform.parent.hasChanged)
-    {
-        if(offsetX - Mathf.RoundToInt(transform.parent.position.x) != 0 || offsetZ - Mathf.RoundToInt(transform.parent.position.z) != 0)
-        {
-            offsetX = Mathf.RoundToInt(transform.parent.position.x);
-            offsetZ = Mathf.RoundToInt(transform.parent.position.z);
-            gridRenderer.AdjustGrid(transform.parent.position, offsetX, offsetZ);
-        }
-        transform.parent.hasChanged = false;
     }
   }
 }

@@ -45,8 +45,11 @@ public class PlanetaryCameraMovement : MonoBehaviour
         Destroy(dummyCamera);
       }
       float scroll = Input.GetAxis("Mouse ScrollWheel");
-      distance = Vector3.Distance(transform.localPosition, transform.parent.position);
-      if ((scroll > 0 && distance > 5f) || (scroll < 0 && distance < 50f))
+      distance = Vector3.Magnitude(transform.localPosition);
+      Debug.Log(distance);
+      Debug.Log(transform.parent.localScale.x);
+      if ((scroll > 0 && distance > 0.05f * transform.parent.localScale.x) || 
+          (scroll < 0 && distance < 0.1f * transform.parent.localScale.x))
       {
         transform.localPosition += transform.forward * Input.mouseScrollDelta.y;
       }
