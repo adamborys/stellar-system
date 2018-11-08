@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LineDrawDistance: 1000
   Interval: 5
-  NarrowLinesInterval: 10
+  NarrowLinesInterval: 5
   NarrowLineWidth: 0.1
   ThinLineWidth: 0.05
   Material: {fileID: 2100000, guid: 32e030e2e98e59a4889c96eda91d24e1, type: 2}

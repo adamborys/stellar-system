@@ -7,6 +7,7 @@ public class PlanetaryCameraMovement : MonoBehaviour
   public static bool IsLocked = false;
   private GameObject dummyCamera;
   private GameObject SPHERE;
+  private GameObject planet;
   private float distance;
   private GridController gridRenderer;
   
@@ -19,11 +20,18 @@ public class PlanetaryCameraMovement : MonoBehaviour
     }
     transform.SetParent(GameObject.Find("Planet").transform);
     gridRenderer = GameObject.Find("Grid").GetComponent<GridController>();
+    planet = GameObject.Find("Planet");
     SPHERE = GameObject.Find("Sphere");
   }
   
   void Update()
   {
+    SPHERE.transform.RotateAround(new Vector3(), Vector3.up, 10 * Time.deltaTime);
+  }
+
+  void LateUpdate()
+  {
+
     if (!IsLocked)
     {
       if (Input.GetMouseButton(2))
@@ -46,15 +54,12 @@ public class PlanetaryCameraMovement : MonoBehaviour
       }
       float scroll = Input.GetAxis("Mouse ScrollWheel");
       distance = Vector3.Magnitude(transform.localPosition);
-      Debug.Log(distance);
-      Debug.Log(transform.parent.localScale.x);
-      if ((scroll > 0 && distance > 0.05f * transform.parent.localScale.x) || 
-          (scroll < 0 && distance < 0.1f * transform.parent.localScale.x))
+      if (transform.parent.gameObject == planet) distance = Mathf.Pow(distance, 2);
+      if ((scroll > 0 && distance > 1f) || 
+          (scroll < 0 && distance < 10f))
       {
-        transform.localPosition += transform.forward * Input.mouseScrollDelta.y;
+        transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
       }
     }
-    if (transform.position.z > 100);
-    SPHERE.transform.RotateAround(new Vector3(), Vector3.up, 10 * Time.deltaTime);
   }
 }
