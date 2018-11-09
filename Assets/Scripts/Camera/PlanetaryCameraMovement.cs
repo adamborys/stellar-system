@@ -61,5 +61,9 @@ public class PlanetaryCameraMovement : MonoBehaviour
         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
       }
     }
+    Debug.Log(transform.position.y);
+    
+    // < 100 = 1/2
+    // 
   }
 }
