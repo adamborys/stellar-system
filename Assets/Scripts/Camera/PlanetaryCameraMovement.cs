@@ -9,7 +9,7 @@ public class PlanetaryCameraMovement : MonoBehaviour
   private GameObject SPHERE;
   private GameObject planet;
   private float distance;
-  private GridController gridRenderer;
+  private GameObject detailedGrid, grid;
   
   void Start()
   {
@@ -19,9 +19,12 @@ public class PlanetaryCameraMovement : MonoBehaviour
       transform.rotation = SystemCreator.EditorCameraRotation;
     }
     transform.SetParent(GameObject.Find("Planet").transform);
-    gridRenderer = GameObject.Find("Grid").GetComponent<GridController>();
+    detailedGrid = GameObject.Find("Detailed Grid");
+    grid = GameObject.Find("Grid");
     planet = GameObject.Find("Planet");
     SPHERE = GameObject.Find("Sphere");
+
+    detailedGrid.SetActive(false);
   }
   
   void Update()
@@ -61,9 +64,16 @@ public class PlanetaryCameraMovement : MonoBehaviour
         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
       }
     }
-    Debug.Log(transform.position.y);
-    
-    // < 100 = 1/2
-    // 
+
+    if(transform.position.y < 100 && grid.activeSelf)
+    {
+      detailedGrid.SetActive(true);
+      grid.SetActive(false);
+    }
+    else if(transform.position.y > 100 && detailedGrid.activeSelf)
+    {
+      detailedGrid.SetActive(false);
+      grid.SetActive(true);
+    }
   }
 }
