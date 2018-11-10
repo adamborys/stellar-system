@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Camera\Selection\StellarSelectionController.cs" />
      <Compile Include="Assets\Scripts\Camera\StellarCameraMovement.cs" />
      <Compile Include="Assets\Scripts\Planetary\GridController.cs" />
+     <Compile Include="Assets\Scripts\Planetary\OrbitalBuildings\ShipyardController.cs" />
      <Compile Include="Assets\Scripts\Stellar\OrbitProvider.cs" />
      <Compile Include="Assets\Scripts\Stellar\PlanetController.cs" />
      <Compile Include="Assets\Scripts\Stellar\SystemCreator.cs" />

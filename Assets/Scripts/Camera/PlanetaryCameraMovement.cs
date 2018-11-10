@@ -6,8 +6,8 @@ public class PlanetaryCameraMovement : MonoBehaviour
 {
   public static bool IsLocked = false;
   private GameObject dummyCamera;
-  private GameObject SPHERE;
   private GameObject planet;
+  private GameObject shipyard;
   private float distance;
   private GameObject detailedGrid, grid;
   
@@ -22,14 +22,14 @@ public class PlanetaryCameraMovement : MonoBehaviour
     detailedGrid = GameObject.Find("Detailed Grid");
     grid = GameObject.Find("Grid");
     planet = GameObject.Find("Planet");
-    SPHERE = GameObject.Find("Sphere");
+    shipyard = GameObject.Find("Shipyard");
 
     detailedGrid.SetActive(false);
   }
   
   void Update()
   {
-    SPHERE.transform.RotateAround(new Vector3(), Vector3.up, 10 * Time.deltaTime);
+    shipyard.transform.RotateAround(new Vector3(), Vector3.up, Time.deltaTime);
   }
 
   void LateUpdate()
