@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlanetarySelectionController : MonoBehaviour
 {
+  public static GameObject Selection; 
   private RaycastHit hit;
   private Ray ray;
-  private Transform planetTransform;
+  private GameObject planet;
 
   void Start()
   {
-    transform.parent = planetTransform = GameObject.Find("Planet").transform;
+    planet = GameObject.Find("Planet");
+    transform.parent = planet.transform;
+    Selection = planet.gameObject;
   }
 
   void Update()
@@ -23,7 +26,7 @@ public class PlanetarySelectionController : MonoBehaviour
       if (Physics.Raycast(ray, out hit))
         transform.SetParent(hit.transform, false);
       else
-        transform.SetParent(planetTransform, false);
+        transform.SetParent(planet.transform, false);
 
       PlanetaryCameraMovement.IsLocked = false;
     }
