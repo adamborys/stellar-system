@@ -58,8 +58,8 @@ public class PlanetaryCameraMovement : MonoBehaviour
       float scroll = Input.GetAxis("Mouse ScrollWheel");
       distance = Vector3.Magnitude(transform.localPosition);
       if (transform.parent.gameObject == planet) distance = Mathf.Pow(distance, 2);
-      if ((scroll > 0 && distance > 1f) || 
-          (scroll < 0 && distance < 10f))
+      if ((scroll > 0 && distance > 5f) || 
+          (scroll < 0 && distance < 20f))
       {
         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
       }

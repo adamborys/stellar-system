@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TimeAxisController : MonoBehaviour
 {
-  private Toggle isTimeAxisEnabled;
+  private Toggle timeAxisToggle;
   private Slider timeAxisSlider;
   private Text timeStopped;
   private Text timeEnd;
@@ -17,7 +17,7 @@ public class TimeAxisController : MonoBehaviour
 
   void Start()
   {
-    isTimeAxisEnabled = GameObject.Find("Toggle").GetComponent<Toggle>();
+    timeAxisToggle = GameObject.Find("Toggle").GetComponent<Toggle>();
     timeAxisSlider = GameObject.Find("Slider").GetComponent<Slider>();
     timeStopped = GameObject.Find("TimeStopped").GetComponent<Text>();
     timeEnd = GameObject.Find("TimeEnd").GetComponent<Text>();
@@ -25,7 +25,7 @@ public class TimeAxisController : MonoBehaviour
     timeStopped.text = "00:01";
     timeEnd.text = (StellarSystem.GameDuration / 60).ToString() + ":00";
 
-    isTimeAxisEnabled.onValueChanged.AddListener(delegate { toggleChange(); });
+    timeAxisToggle.onValueChanged.AddListener(delegate { toggleChange(); });
     timeAxisSlider.onValueChanged.AddListener(delegate { sliderChange(); });
     timeAxisSlider.value = 0;
     timeEnd.enabled = false;
@@ -41,7 +41,7 @@ public class TimeAxisController : MonoBehaviour
 
   void toggleChange()
   {
-    if (isTimeAxisEnabled.isOn)
+    if (timeAxisToggle.isOn)
     {
       startSliderValue = StellarSystem.GameTime / StellarSystem.GameDuration;
       stoppedProgresses = new float[StellarSystem.PlanetQuantity];

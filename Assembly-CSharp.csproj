@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\Stellar\SystemCreator.cs" />
      <Compile Include="Assets\Scripts\UI\MenuController.cs" />
      <Compile Include="Assets\Scripts\UI\TimeAxisController.cs" />
+     <Compile Include="Assets\Scripts\UI\ToggleActionsController.cs" />
  <Reference Include="Unity.Entities.Properties">
  <HintPath>C:/Users/residue/Desktop/Projekty/StellarSystem/Library/ScriptAssemblies/Unity.Entities.Properties.dll</HintPath>
  </Reference>

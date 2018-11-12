@@ -853,6 +853,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 534669904}
+    - target: {fileID: 1443835743848760, guid: cee34aa15af64fd4a9c57e775ee8dc5e, type: 3}
+      propertyPath: m_Name
+      value: TimeAxisToggle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cee34aa15af64fd4a9c57e775ee8dc5e, type: 3}
 --- !u!224 &2143056149 stripped

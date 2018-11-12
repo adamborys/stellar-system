@@ -28,6 +28,9 @@ public class PlanetarySelectionController : MonoBehaviour
       else
         transform.SetParent(planet.transform, false);
 
+      //float distance = Vector3.Magnitude(transform.localPosition);
+      
+      
       PlanetaryCameraMovement.IsLocked = false;
     }
   }
