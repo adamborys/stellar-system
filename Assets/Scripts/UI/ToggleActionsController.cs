@@ -18,8 +18,8 @@ public class ToggleActionsController : MonoBehaviour
         actionsToggle = GetComponent<Toggle>();
         actionsToggle.onValueChanged.AddListener(delegate { toggleChange(); });
 
-        start = new Vector3(0,100,0);
-        end = new Vector3(0,160,0);
+        start = new Vector3(0,120,0);
+        end = new Vector3(0,170,0);
         progress = 1f;
     }   
 
