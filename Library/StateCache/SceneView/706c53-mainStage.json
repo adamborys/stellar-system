@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":false,"showMaterialUpdate":false,"showSkybox":true,"showFlares":false,"showImageEffects":false,"showParticleSystems":false},"in2DMode":false,"pivot":{"x":14.701446533203125,"y":-454.05133056640627,"z":-110.31210327148438},"rotation":{"x":-0.17041203379631043,"y":0.7988226413726807,"z":-0.5120105743408203,"w":-0.26587092876434328},"size":1586.665283203125,"orthographic":false}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":false,"showMaterialUpdate":false,"showSkybox":true,"showFlares":false,"showImageEffects":false,"showParticleSystems":false},"in2DMode":false,"pivot":{"x":0.5437578558921814,"y":561.4949340820313,"z":-562.1940307617188},"rotation":{"x":-0.2682088613510132,"y":0.32817980647087099,"z":-0.09775137156248093,"w":-0.9004480838775635},"size":0.248723566532135,"orthographic":false}
+>>>>>>> planetary
