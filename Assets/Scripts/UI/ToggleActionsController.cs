@@ -14,12 +14,12 @@ public class ToggleActionsController : MonoBehaviour
 
     void Start()
     {
-        actionsTransform = GetComponent<RectTransform>();
+        actionsTransform = GameObject.Find("ActionsPanel").GetComponent<RectTransform>();
         actionsToggle = GetComponent<Toggle>();
         actionsToggle.onValueChanged.AddListener(delegate { toggleChange(); });
 
-        start = new Vector3(0,15,0);
-        end = new Vector3(0,70,0);
+        start = new Vector3(0,100,0);
+        end = new Vector3(0,160,0);
         progress = 1f;
     }   
 

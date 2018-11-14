@@ -13,7 +13,7 @@ public class StellarSystem
   public static int PlanetQuantity;
   public static float GameSpeed = 0;
   public static float GameTime = 0;
-  public static float GameDuration = 900f;
+  public static float GameDuration = 1800f;
   public static bool IsStarted = false;
   public static bool IsPaused = false;
 

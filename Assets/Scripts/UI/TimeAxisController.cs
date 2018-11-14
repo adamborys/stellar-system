@@ -17,7 +17,7 @@ public class TimeAxisController : MonoBehaviour
 
   void Start()
   {
-    timeAxisToggle = GameObject.Find("Toggle").GetComponent<Toggle>();
+    timeAxisToggle = GameObject.Find("TimeAxisToggle").GetComponent<Toggle>();
     timeAxisSlider = GameObject.Find("Slider").GetComponent<Slider>();
     timeStopped = GameObject.Find("TimeStopped").GetComponent<Text>();
     timeEnd = GameObject.Find("TimeEnd").GetComponent<Text>();

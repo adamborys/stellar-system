@@ -811,7 +811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1671760702558616, guid: cee34aa15af64fd4a9c57e775ee8dc5e, type: 3}
       propertyPath: m_Name
-      value: TimeAxisControls
+      value: UICanvas
       objectReference: {fileID: 0}
     - target: {fileID: 224575761270086524, guid: cee34aa15af64fd4a9c57e775ee8dc5e,
         type: 3}
