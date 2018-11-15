@@ -43,6 +43,7 @@ public class PlanetaryCameraMovement : MonoBehaviour
     {
         if (!IsLocked)
         {
+            float angleX;
             // Spherical camera with limited rotation
             if (Input.GetMouseButton(2))
             {
@@ -52,9 +53,9 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 dummyTransform.RotateAround(transform.parent.position, Vector3.up, Input.GetAxis("Mouse X") * 2f);
                 dummyTransform.RotateAround(transform.parent.position, dummyTransform.right, Input.GetAxis("Mouse Y") * -2f);
                 dummyTransform.rotation = Quaternion.Euler(dummyTransform.rotation.eulerAngles.x, dummyTransform.rotation.eulerAngles.y, 0f);
-
-                float x = dummyTransform.rotation.eulerAngles.x;
-                if ((0 <= x && x <= 70) || (290 <= x && x < 360))
+                
+                angleX = dummyTransform.rotation.eulerAngles.x;
+                if ((0 <= angleX && angleX <= 70) || (290 <= angleX && angleX < 360))
                 {
                     transform.LookAt(transform.parent);
                     transform.localPosition = dummyTransform.localPosition;
@@ -62,7 +63,9 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 }
                 Destroy(dummyCamera);
             }
-
+            else
+                angleX = transform.rotation.eulerAngles.x;
+                
             // Zoom with scrollwheel
             float scroll = Input.GetAxis("Mouse ScrollWheel");
             distance = Vector3.Magnitude(transform.localPosition);
@@ -78,21 +81,40 @@ public class PlanetaryCameraMovement : MonoBehaviour
             {
                 if ( Input.mousePosition.y >= Screen.height * 0.95)
                 {
+                    // Translation speed adjusted to X angle
+                    float speed;
+                    if(0 <= angleX && angleX <= 80) speed = Mathf.Sin((angleX * Mathf.PI)/180);
+                    else
+                    {
+                        angleX %= 90;
+                        speed = -Mathf.Cos((angleX * Mathf.PI)/180);
+                    }
                     Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
-                    freeCamParent.Translate(freeCamForward * Time.deltaTime * 1000f, Space.World);
+                    freeCamParent.Translate(freeCamForward * Time.deltaTime * speed
+                    * 1000f, Space.World);
+                    Debug.Log(speed);
                 }
                 else if ( Input.mousePosition.y <= Screen.height * 0.05)
                 {
+                    float speed;
+                    if(0 <= angleX && angleX <= 80) speed = -Mathf.Sin((angleX * Mathf.PI)/180);
+                    else
+                    {
+                        angleX %= 90;
+                        speed = Mathf.Cos((angleX * Mathf.PI)/180);
+                    }
                     Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
-                    freeCamParent.Translate(-freeCamForward * Time.deltaTime * 1000f, Space.World);
+                    freeCamParent.Translate(freeCamForward * Time.deltaTime * speed
+                    * 1000f, Space.World);
+                    Debug.Log(speed);
                 }
                 if ( Input.mousePosition.x >= Screen.width * 0.95)
                 {
-                    freeCamParent.Translate(transform.right * Time.deltaTime * 1000f, Space.World);
+                    freeCamParent.Translate(transform.right * Time.deltaTime * 700f, Space.World);
                 }
                 else if ( Input.mousePosition.x <= Screen.width * 0.05)
                 {
-                    freeCamParent.Translate(-transform.right * Time.deltaTime * 1000f, Space.World);
+                    freeCamParent.Translate(-transform.right * Time.deltaTime * 700f, Space.World);
                 }
             }
         }
