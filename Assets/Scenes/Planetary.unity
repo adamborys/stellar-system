@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab7380dc8a095d4e9e5ff06e0b4a41f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineDrawDistance: 1000
+  lineDrawDistance: 2000
   Interval: 50
   NarrowLinesInterval: 2
   NarrowLineWidth: 0.6
@@ -1111,8 +1111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab7380dc8a095d4e9e5ff06e0b4a41f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineDrawDistance: 500
-  Interval: 5
+  lineDrawDistance: 2000
+  Interval: 25
   NarrowLinesInterval: 5
   NarrowLineWidth: 0.1
   ThinLineWidth: 0.05
@@ -1769,7 +1769,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 10000
+  far clip plane: 2000
   field of view: 60
   orthographic: 0
   orthographic size: 5

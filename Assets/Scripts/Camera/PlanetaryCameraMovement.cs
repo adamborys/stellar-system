@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlanetaryCameraMovement : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlanetaryCameraMovement : MonoBehaviour
     private GameObject shipyard;
     private float distance;
     private GameObject detailedGrid, grid;
+    private Toggle camToggle;
+    private Transform freeCamParent;
 
     void Start()
     {
@@ -18,11 +21,15 @@ public class PlanetaryCameraMovement : MonoBehaviour
             transform.position = SystemCreator.EditorCameraPosition;
             transform.rotation = SystemCreator.EditorCameraRotation;
         }
+
         transform.SetParent(GameObject.Find("Planet").transform);
         detailedGrid = GameObject.Find("Detailed Grid");
         grid = GameObject.Find("Grid");
         planet = GameObject.Find("Planet");
         shipyard = GameObject.Find("Shipyard");
+
+        camToggle = GameObject.Find("CamToggle").GetComponent<Toggle>();
+        freeCamParent = GameObject.Find("Free Cam Parent").transform;
 
         detailedGrid.SetActive(false);
     }
@@ -36,6 +43,7 @@ public class PlanetaryCameraMovement : MonoBehaviour
     {
         if (!IsLocked)
         {
+            // Spherical camera with limited rotation
             if (Input.GetMouseButton(2))
             {
                 dummyCamera = Instantiate(transform.gameObject);
@@ -54,16 +62,40 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 }
                 Destroy(dummyCamera);
             }
+
+            // Zoom with scrollwheel
             float scroll = Input.GetAxis("Mouse ScrollWheel");
             distance = Vector3.Magnitude(transform.localPosition);
             if (transform.parent.gameObject == planet) distance = Mathf.Pow(distance, 2);
             if ((scroll > 0 && distance > 5f) ||
-                (scroll < 0 && distance < 20f))
+                (scroll < 0 && distance < 50f))
             {
                 transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
             }
+
+            // Moving free camera
+            if(camToggle.isOn)
+            {
+                if ( Input.mousePosition.y >= Screen.height * 0.95)
+                {
+                    freeCamParent.Translate(Vector3.forward * Time.deltaTime * 100f, Space.World);
+                }
+                else if ( Input.mousePosition.y <= Screen.height * 0.05)
+                {
+                    freeCamParent.Translate(-Vector3.forward * Time.deltaTime * 100f, Space.World);
+                }
+                if ( Input.mousePosition.x >= Screen.width * 0.95)
+                {
+                    freeCamParent.Translate(Vector3.right * Time.deltaTime * 100f, Space.World);
+                }
+                else if ( Input.mousePosition.x <= Screen.width * 0.05)
+                {
+                    freeCamParent.Translate(-Vector3.right * Time.deltaTime * 100f, Space.World);
+                }
+            }
         }
 
+        // Grid displayed dependent on camera altitude
         if (transform.position.y < 100 && grid.activeSelf)
         {
             detailedGrid.SetActive(true);

@@ -14,12 +14,13 @@ public class PlanetarySelectionController : MonoBehaviour
     private Transform selection;
     private Toggle camToggle;
     private Transform freeCamParent;
-    private int fingerID = -1;
+    private int pointerID = -1;
     private void Awake()
     {
-    #if !UNITY_EDITOR
-        fingerID = 0; 
-    #endif
+        // Checking platform for EventSystem.IsPointerOverGameObject()
+        #if !UNITY_EDITOR
+            pointerID = 0; 
+        #endif
     }
     void Start()
     {
@@ -31,7 +32,7 @@ public class PlanetarySelectionController : MonoBehaviour
         camToggle.onValueChanged.AddListener(delegate { toggleChange(); });
 
         freeCamParent = GameObject.Find("Free Cam Parent").transform;
-        refreshFreeCam(planet.transform);
+        freeCamCloneTransform(planet.transform);
     }
 
     void Update()
@@ -39,12 +40,13 @@ public class PlanetarySelectionController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // Fail-safe GUI blocking Raycast
-            if (EventSystem.current.IsPointerOverGameObject(fingerID))
+            if (EventSystem.current.IsPointerOverGameObject(pointerID))
             {
                 Debug.Log("GUI Hit!");
                 return;
             }
             
+            // Raycast interactable selection
             PlanetaryCameraMovement.IsLocked = true;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -58,20 +60,13 @@ public class PlanetarySelectionController : MonoBehaviour
             }
             PlanetaryCameraMovement.IsLocked = false;
         }
-        if(camToggle.isOn)
-        {
-            if ( Input.mousePosition.y >= Screen.height *0.95)
-            {
-                freeCamParent.Translate(Vector3.right * Time.deltaTime * 0.1f, Space.World);
-            }
-        }
     }
 
     private void toggleChange()
     {
         if (camToggle.isOn)
         {
-            refreshFreeCam(transform.parent);
+            freeCamCloneTransform(transform.parent);
             transform.SetParent(freeCamParent, false);
         }
         else
@@ -80,7 +75,7 @@ public class PlanetarySelectionController : MonoBehaviour
         }
     }
 
-    private void refreshFreeCam(Transform newTransform)
+    private void freeCamCloneTransform(Transform newTransform)
     {
         freeCamParent.parent = newTransform.parent;
         freeCamParent.position = newTransform.position;
