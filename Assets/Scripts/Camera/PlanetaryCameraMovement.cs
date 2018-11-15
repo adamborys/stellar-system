@@ -78,19 +78,21 @@ public class PlanetaryCameraMovement : MonoBehaviour
             {
                 if ( Input.mousePosition.y >= Screen.height * 0.95)
                 {
-                    freeCamParent.Translate(Vector3.forward * Time.deltaTime * 100f, Space.World);
+                    Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
+                    freeCamParent.Translate(freeCamForward * Time.deltaTime * 1000f, Space.World);
                 }
                 else if ( Input.mousePosition.y <= Screen.height * 0.05)
                 {
-                    freeCamParent.Translate(-Vector3.forward * Time.deltaTime * 100f, Space.World);
+                    Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
+                    freeCamParent.Translate(-freeCamForward * Time.deltaTime * 1000f, Space.World);
                 }
                 if ( Input.mousePosition.x >= Screen.width * 0.95)
                 {
-                    freeCamParent.Translate(Vector3.right * Time.deltaTime * 100f, Space.World);
+                    freeCamParent.Translate(transform.right * Time.deltaTime * 1000f, Space.World);
                 }
                 else if ( Input.mousePosition.x <= Screen.width * 0.05)
                 {
-                    freeCamParent.Translate(-Vector3.right * Time.deltaTime * 100f, Space.World);
+                    freeCamParent.Translate(-transform.right * Time.deltaTime * 1000f, Space.World);
                 }
             }
         }
