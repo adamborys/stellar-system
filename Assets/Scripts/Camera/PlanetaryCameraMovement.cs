@@ -9,7 +9,6 @@ public class PlanetaryCameraMovement : MonoBehaviour
     private GameObject dummyCamera;
     private GameObject planet;
     private GameObject shipyard;
-    private float distance;
     private GameObject detailedGrid, grid;
     private Toggle camToggle;
     private Transform freeCamParent;
@@ -65,10 +64,10 @@ public class PlanetaryCameraMovement : MonoBehaviour
             }
             else
                 angleX = transform.rotation.eulerAngles.x;
-                
+
             // Zoom with scrollwheel
             float scroll = Input.GetAxis("Mouse ScrollWheel");
-            distance = Vector3.Magnitude(transform.localPosition);
+            float distance = Vector3.Magnitude(transform.localPosition);
             if (transform.parent.gameObject == planet) distance = Mathf.Pow(distance, 2);
             if ((scroll > 0 && distance > 5f) ||
                 (scroll < 0 && distance < 50f))
