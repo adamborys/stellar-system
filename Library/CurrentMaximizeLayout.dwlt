@@ -21,10 +21,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 675
-  m_MinSize: {x: 681, y: 324}
-  m_MaxSize: {x: 12006, y: 8024}
+  m_MinSize: {x: 683, y: 498}
+  m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 12965
+  controlID: 3936
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -126,10 +126,10 @@ MonoBehaviour:
     y: 0
     width: 1089
     height: 675
-  m_MinSize: {x: 404, y: 324}
-  m_MaxSize: {x: 8004, y: 8024}
+  m_MinSize: {x: 406, y: 498}
+  m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 12966
+  controlID: 3937
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -151,10 +151,10 @@ MonoBehaviour:
     y: 0
     width: 1089
     height: 401
-  m_MinSize: {x: 404, y: 224}
-  m_MaxSize: {x: 8004, y: 4024}
+  m_MinSize: {x: 406, y: 224}
+  m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 12967
+  controlID: 3938
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -212,7 +212,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 082effffee440000f2440000f6440000
+      m_ExpandedIDs: d4fbffff36110000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -289,14 +289,14 @@ MonoBehaviour:
     height: 381
   m_PersistentViewDataDictionary: {fileID: 0}
   m_WindowGUID: d9de2742bae4a5c429c4c20c197c6200
-  m_SceneLighting: 0
+  m_SceneLighting: 1
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 41.884323, y: -9.720001, z: 5.2823105}
+    m_Target: {x: -8.691622, y: 13.549, z: -183.44818}
     speed: 2
-    m_Value: {x: 41.884323, y: -9.720001, z: 5.2823105}
+    m_Value: {x: -8.691622, y: 13.549, z: -183.44818}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -324,13 +324,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.37352756, y: 0.001945482, z: -0.00078345824, w: -0.9276168}
+    m_Target: {x: -0.30390808, y: -0.2430385, z: 0.08048922, w: -0.9176566}
     speed: 2
-    m_Value: {x: -0.37352756, y: 0.001945482, z: -0.00078345824, w: -0.9276168}
+    m_Value: {x: -0.30390808, y: -0.2430385, z: 0.08048922, w: -0.9176566}
   m_Size:
-    m_Target: 85.47186
+    m_Target: 47.164375
     speed: 2
-    m_Value: 85.47186
+    m_Value: 47.164375
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -361,14 +361,14 @@ MonoBehaviour:
     y: 401
     width: 1089
     height: 274
-  m_MinSize: {x: 102, y: 124}
-  m_MaxSize: {x: 4002, y: 4024}
-  m_ActualView: {fileID: 11}
+  m_MinSize: {x: 232, y: 274}
+  m_MaxSize: {x: 10002, y: 10024}
+  m_ActualView: {fileID: 10}
   m_Panes:
   - {fileID: 10}
   - {fileID: 11}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -407,20 +407,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Planetary/Prefabs/Shipyard/ActionButtons
+    - Assets/Resources/Planetary/Prefabs/Shipyard
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/Planetary/Prefabs/Shipyard/ActionButtons
+  - Assets/Resources/Planetary/Prefabs/Shipyard
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\residue\Desktop\Projekty\StellarSystem
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 83}
-    m_SelectedIDs: 7e0d0000
-    m_LastClickedID: 3454
-    m_ExpandedIDs: 00000000100d0000140e0000ba0e00001c0f00002a0f00005a0f00009e0f0000c00f00008a100000aa10000000ca9a3b
+    scrollPos: {x: 0, y: 23}
+    m_SelectedIDs: c20f0000
+    m_LastClickedID: 4034
+    m_ExpandedIDs: 00000000120d0000160e0000bc0e00001e0f00002c0f00005c0f0000a00f0000c20f00008c100000ac10000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -448,7 +448,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000100d0000140e0000ba0e00001c0f00002a0f00005a0f00009e0f0000c00f00008a100000aa10000000ca9a3b
+    m_ExpandedIDs: 00000000120d0000160e0000bc0e00001e0f00002c0f00005c0f0000a00f0000c20f00008c100000ac10000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -473,10 +473,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 0cc5feff
-    m_LastClickedInstanceID: -80628
+    m_SelectedInstanceIDs: 7c110000
+    m_LastClickedInstanceID: 4476
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c623000000000000
+    m_ExpandedInstanceIDs: c623000000000000720d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -502,7 +502,7 @@ MonoBehaviour:
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
-  m_DirectoriesAreaWidth: 177
+  m_DirectoriesAreaWidth: 176
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52

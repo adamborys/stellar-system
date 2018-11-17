@@ -75,6 +75,9 @@ public class PlanetarySelectionController : MonoBehaviour
         {
             freeCamCloneTransform(transform.parent);
             transform.SetParent(freeCamParent, false);
+            float distance = Vector3.Magnitude(transform.localPosition);
+            transform.localPosition = transform.localPosition +
+                Vector3.Normalize(transform.localPosition) * (10f - distance);
         }
         else
         {
