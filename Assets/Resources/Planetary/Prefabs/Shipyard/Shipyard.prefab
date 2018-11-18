@@ -15,7 +15,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6221494421445336039}
-  - component: {fileID: 7502020673966363829}
+  - component: {fileID: 7973267071880068272}
+  - component: {fileID: 6549982709945663023}
   m_Layer: 0
   m_Name: Shipyard
   m_TagString: Untagged
@@ -40,7 +41,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &7502020673966363829
+--- !u!114 &7973267071880068272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6221494421445336032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde61f246874251419a4697b3f137b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &6549982709945663023
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,7 +64,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 60a331c17fe2294438757ad50a7150f0, type: 3}
 --- !u!1 &6221494421693962799
