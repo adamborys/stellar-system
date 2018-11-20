@@ -11,9 +11,8 @@ public class PlanetarySelectionController : MonoBehaviour
     private RaycastHit hit;
     private Ray ray;
     private GameObject planet;
-    private Transform selection;
     private Toggle camToggle;
-    private Transform freeCamParent;
+    private Transform from;
     private int pointerID = -1;
     private void Awake()
     {
@@ -25,14 +24,11 @@ public class PlanetarySelectionController : MonoBehaviour
     void Start()
     {
         planet = GameObject.Find("Planet");
-        transform.parent = planet.transform;
-        Selection = planet.gameObject;
+        Selection = planet;
         camToggle = GameObject.Find("CamToggle").GetComponent<Toggle>();
         camToggle.isOn = false;
-        camToggle.onValueChanged.AddListener(delegate { toggleChange(); });
 
-        freeCamParent = GameObject.Find("Free Cam Parent").transform;
-        freeCamCloneTransform(planet.transform);
+        from = GameObject.Find("Cam Parent").transform;
     }
 
     void Update()
@@ -52,46 +48,25 @@ public class PlanetarySelectionController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                selection = hit.transform;
-                if (!camToggle.isOn)
-                {
-                    transform.SetParent(selection, false);
-                }
+                Selection = hit.transform.gameObject;
                 float distance = Vector3.Magnitude(transform.localPosition);
-                if(selection == planet.transform)
-                    transform.localPosition = transform.localPosition +
-                        Vector3.Normalize(transform.localPosition) * (5f - distance);
+                if(Selection == planet)
+                    transform.localPosition =
+                        Vector3.Normalize(transform.localPosition) * 500f;
                 else
-                    transform.localPosition = transform.localPosition +
-                        Vector3.Normalize(transform.localPosition) * (25f - distance);
+                    transform.localPosition =
+                        Vector3.Normalize(transform.localPosition) * 25f;
             }
             PlanetaryCameraMovement.IsLocked = false;
         }
+        if (!camToggle.isOn)
+            clonePosition(Selection.transform, transform.parent);
     }
 
-    private void toggleChange()
+    private void clonePosition(Transform from, Transform to)
     {
-        if (camToggle.isOn)
-        {
-            freeCamCloneTransform(transform.parent);
-            transform.SetParent(freeCamParent, false);
-            float distance = Vector3.Magnitude(transform.localPosition);
-            transform.localPosition = transform.localPosition +
-                Vector3.Normalize(transform.localPosition) * (10f - distance);
-        }
-        else
-        {
-            transform.SetParent(selection, false);
-        }
-    }
-
-    private void freeCamCloneTransform(Transform newTransform)
-    {
-        freeCamParent.parent = newTransform.parent;
-        freeCamParent.position = newTransform.position;
-        freeCamParent.localPosition = newTransform.localPosition;
-        freeCamParent.rotation = newTransform.rotation;
-        freeCamParent.localRotation = newTransform.localRotation;
-        freeCamParent.localScale = new Vector3(25f, 25f, 25f);
+        to.parent = from.parent;
+        to.position = from.position;
+        to.localPosition = from.localPosition;
     }
 }

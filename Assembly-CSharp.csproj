@@ -53,9 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Datamodels\Ellipse.cs" />
-     <Compile Include="Assets\Datamodels\Planet.cs" />
-     <Compile Include="Assets\Datamodels\StellarSystem.cs" />
+     <Compile Include="Assets\DataModels\Ellipse.cs" />
+     <Compile Include="Assets\DataModels\Planet.cs" />
+     <Compile Include="Assets\DataModels\StellarSystem.cs" />
      <Compile Include="Assets\Scripts\Camera\PlanetaryCameraMovement.cs" />
      <Compile Include="Assets\Scripts\Camera\Selection\PlanetarySelectionController.cs" />
      <Compile Include="Assets\Scripts\Camera\Selection\StellarSelectionController.cs" />
@@ -133,11 +133,11 @@
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Users/residue/Desktop/Projekty/StellarSystem/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Transforms.Hybrid">
- <HintPath>C:/Users/residue/Desktop/Projekty/StellarSystem/Library/ScriptAssemblies/Unity.Transforms.Hybrid.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
  <HintPath>C:/Users/residue/Desktop/Projekty/StellarSystem/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Transforms.Hybrid">
+ <HintPath>C:/Users/residue/Desktop/Projekty/StellarSystem/Library/ScriptAssemblies/Unity.Transforms.Hybrid.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.0b10/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

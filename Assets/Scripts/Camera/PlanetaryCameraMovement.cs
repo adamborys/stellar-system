@@ -7,11 +7,10 @@ public class PlanetaryCameraMovement : MonoBehaviour
 {
     public static bool IsLocked = false;
     private GameObject dummyCamera;
-    private GameObject planet;
     private GameObject shipyard;
     private GameObject detailedGrid, grid;
     private Toggle camToggle;
-    private Transform freeCamParent;
+    private Transform camParent;
 
     void Start()
     {
@@ -21,14 +20,12 @@ public class PlanetaryCameraMovement : MonoBehaviour
             transform.rotation = SystemCreator.EditorCameraRotation;
         }
 
-        transform.SetParent(GameObject.Find("Planet").transform);
         detailedGrid = GameObject.Find("Detailed Grid");
         grid = GameObject.Find("Grid");
-        planet = GameObject.Find("Planet");
         shipyard = GameObject.Find("Shipyard");
 
         camToggle = GameObject.Find("CamToggle").GetComponent<Toggle>();
-        freeCamParent = GameObject.Find("Free Cam Parent").transform;
+        camParent = GameObject.Find("Cam Parent").transform;
 
         detailedGrid.SetActive(false);
     }
@@ -69,11 +66,24 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 // Zoom with scrollwheel
                 float scroll = Input.GetAxis("Mouse ScrollWheel");
                 float distance = Vector3.Magnitude(transform.localPosition);
-                if (transform.parent.gameObject == planet) distance = Mathf.Pow(distance, 2);
-                if ((scroll > 0 && distance > 5f) ||
-                    (scroll < 0 && distance < 50f))
+                if (scroll > 0)
                 {
-                    transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
+                    if(PlanetarySelectionController.Selection.name == "Planet")
+                    {
+                        if(distance > 200f)
+                            transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
+                    }
+                    else if(distance > PlanetarySelectionController.Selection
+                    //Minimal distance from camera equal to selection bounds
+                    .GetComponent<MeshCollider>().bounds.size.z)
+                        transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
+                }
+                else if (scroll < 0)
+                {
+                    if(PlanetarySelectionController.Selection.name == "Planet" && distance < 700f)
+                        transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
+                    else if(distance < 50f)
+                        transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
                 }
 
                 // Moving free camera
@@ -90,7 +100,7 @@ public class PlanetaryCameraMovement : MonoBehaviour
                             speed = -Mathf.Cos((angleX * Mathf.PI)/180);
                         }
                         Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
-                        freeCamParent.Translate(freeCamForward * Time.deltaTime * speed
+                        camParent.Translate(freeCamForward * Time.deltaTime * speed
                         * 1000f, Space.World);
                         Debug.Log(speed);
                     }
@@ -104,17 +114,16 @@ public class PlanetaryCameraMovement : MonoBehaviour
                             speed = Mathf.Cos((angleX * Mathf.PI)/180);
                         }
                         Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
-                        freeCamParent.Translate(freeCamForward * Time.deltaTime * speed
+                        camParent.Translate(freeCamForward * Time.deltaTime * speed
                         * 1000f, Space.World);
-                        Debug.Log(speed);
                     }
                     if ( Input.mousePosition.x >= Screen.width * 0.95)
                     {
-                        freeCamParent.Translate(transform.right * Time.deltaTime * 700f, Space.World);
+                        camParent.Translate(transform.right * Time.deltaTime * 700f, Space.World);
                     }
                     else if ( Input.mousePosition.x <= Screen.width * 0.05)
                     {
-                        freeCamParent.Translate(-transform.right * Time.deltaTime * 700f, Space.World);
+                        camParent.Translate(-transform.right * Time.deltaTime * 700f, Space.World);
                     }
                 }
             }
