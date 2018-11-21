@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Action : Destructable 
+public class Action 
 {
     public string PathToImageResource { get => pathToImageResource; set => pathToImageResource = value; }
     private string pathToImageResource;
