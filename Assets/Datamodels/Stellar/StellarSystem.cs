@@ -7,7 +7,7 @@ public class StellarSystem
 {
 
   public List<OrbitProvider> Orbits;
-  public List<Planet> Planets;
+  public List<PlanetInfo> Planets;
   public List<Transform> PlanetTransforms;
   public List<float> PlanetProgresses;
   public static int PlanetQuantity;
@@ -20,7 +20,7 @@ public class StellarSystem
   public StellarSystem(SystemCreator creator, GameObject origin)
   {
     this.Orbits = new List<OrbitProvider>();
-    this.Planets = new List<Planet>();
+    this.Planets = new List<PlanetInfo>();
     this.PlanetTransforms = new List<Transform>();
     this.PlanetProgresses = new List<float>();
     PlanetQuantity = creator.PlanetQuantity;
@@ -28,7 +28,7 @@ public class StellarSystem
     System.Random randomizer = new System.Random();
     for (int i = 0; i < PlanetQuantity; i++)
     {
-      Planets.Add(new Planet(i, randomizer));
+      Planets.Add(new PlanetInfo(i, randomizer));
 
       this.Orbits.Add(creator.Orbits[i].GetComponent<OrbitProvider>());
       GameObject planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);

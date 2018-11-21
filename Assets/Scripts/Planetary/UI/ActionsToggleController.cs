@@ -14,7 +14,7 @@ public class ActionsToggleController : MonoBehaviour
 
     void Start()
     {
-        actionsTransform = GameObject.Find("ActionsPanel").GetComponent<RectTransform>();
+        actionsTransform = GameObject.Find("Actions Panel").GetComponent<RectTransform>();
         actionsToggle = GetComponent<Toggle>();
         actionsToggle.onValueChanged.AddListener(delegate { toggleChange(); });
 

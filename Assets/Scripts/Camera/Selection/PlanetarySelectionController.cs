@@ -8,10 +8,11 @@ using UnityEngine.UI;
 public class PlanetarySelectionController : MonoBehaviour
 {
     public static GameObject Selection;
+    public static GameObject Planet;
     private RaycastHit hit;
     private Ray ray;
-    private GameObject planet;
     private Toggle camToggle;
+    private Text selectionText;
     private Transform from;
     private int pointerID = -1;
     private void Awake()
@@ -23,9 +24,10 @@ public class PlanetarySelectionController : MonoBehaviour
     }
     void Start()
     {
-        planet = GameObject.Find("Planet");
-        Selection = planet;
-        camToggle = GameObject.Find("CamToggle").GetComponent<Toggle>();
+        Planet = GameObject.Find("Planet");
+        Selection = Planet;
+        camToggle = GameObject.Find("Cam Toggle").GetComponent<Toggle>();
+        selectionText = GameObject.Find("Selection Text").GetComponent<Text>();
         camToggle.isOn = false;
 
         from = GameObject.Find("Cam Parent").transform;
@@ -49,18 +51,25 @@ public class PlanetarySelectionController : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 Selection = hit.transform.gameObject;
-                float distance = Vector3.Magnitude(transform.localPosition);
-                if(Selection == planet)
-                    transform.localPosition =
-                        Vector3.Normalize(transform.localPosition) * 500f;
-                else
-                    transform.localPosition =
-                        Vector3.Normalize(transform.localPosition) * 25f;
+                selectionText.text = "Selection:" + Selection.gameObject.name;
+                if(camToggle.isOn)
+                {
+                    if(Selection == Planet)
+                        transform.localPosition =
+                            Vector3.Normalize(transform.localPosition) * 500f;
+                    else
+                        transform.localPosition =
+                            Vector3.Normalize(transform.localPosition) * 25f;
+                }
             }
             PlanetaryCameraMovement.IsLocked = false;
         }
         if (!camToggle.isOn)
             clonePosition(Selection.transform, transform.parent);
+    }
+    public static bool isPlanetSelected()
+    {
+        return Selection == Planet;
     }
 
     private void clonePosition(Transform from, Transform to)

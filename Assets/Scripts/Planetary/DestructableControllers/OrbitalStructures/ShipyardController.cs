@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipyardController : MonoBehaviour
+public class ShipyardController : OrbitalStructureController
 {
     private Transform clockwise, cclockwise;
     private bool isConstructing;

@@ -53,15 +53,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DataModels\Ellipse.cs" />
-     <Compile Include="Assets\DataModels\Planet.cs" />
-     <Compile Include="Assets\DataModels\StellarSystem.cs" />
+     <Compile Include="Assets\DataModels\Planetary\Destructable.cs" />
+     <Compile Include="Assets\DataModels\Planetary\Destructables\OrbitalStructure.cs" />
+     <Compile Include="Assets\DataModels\Planetary\Destructables\Ship.cs" />
+     <Compile Include="Assets\DataModels\Planetary\Destructables\Ships\Drone.cs" />
+     <Compile Include="Assets\DataModels\Planetary\Destructables\Ships\SteerableShip.cs" />
+     <Compile Include="Assets\DataModels\Planetary\Destructables\Ships\SteerableShips\DockableShip.cs" />
+     <Compile Include="Assets\DataModels\Planetary\Interactable.cs" />
+     <Compile Include="Assets\DataModels\Planetary\Planet.cs" />
+     <Compile Include="Assets\DataModels\Planetary\UI\Action.cs" />
+     <Compile Include="Assets\DataModels\Stellar\Ellipse.cs" />
+     <Compile Include="Assets\DataModels\Stellar\PlanetInfo.cs" />
+     <Compile Include="Assets\DataModels\Stellar\StellarSystem.cs" />
      <Compile Include="Assets\Scripts\Camera\PlanetaryCameraMovement.cs" />
      <Compile Include="Assets\Scripts\Camera\Selection\PlanetarySelectionController.cs" />
      <Compile Include="Assets\Scripts\Camera\Selection\StellarSelectionController.cs" />
      <Compile Include="Assets\Scripts\Camera\StellarCameraMovement.cs" />
+     <Compile Include="Assets\Scripts\Planetary\DestructableController.cs" />
+     <Compile Include="Assets\Scripts\Planetary\DestructableControllers\OrbitalStructureController.cs" />
+     <Compile Include="Assets\Scripts\Planetary\DestructableControllers\OrbitalStructures\ShipyardController.cs" />
+     <Compile Include="Assets\Scripts\Planetary\DestructableControllers\ShipController.cs" />
      <Compile Include="Assets\Scripts\Planetary\GridController.cs" />
-     <Compile Include="Assets\Scripts\Planetary\OrbitalBuildings\ShipyardController.cs" />
      <Compile Include="Assets\Scripts\Planetary\UI\ActionProgress.cs" />
      <Compile Include="Assets\Scripts\Planetary\UI\ActionsController.cs" />
      <Compile Include="Assets\Scripts\Planetary\UI\ActionsToggleController.cs" />

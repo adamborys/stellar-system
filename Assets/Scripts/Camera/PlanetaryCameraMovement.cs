@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 public class PlanetaryCameraMovement : MonoBehaviour
 {
     public static bool IsLocked = false;
-    private GameObject dummyCamera;
+    public static float Magnitude;
     private GameObject shipyard;
     private GameObject detailedGrid, grid;
     private Toggle camToggle;
@@ -20,11 +21,12 @@ public class PlanetaryCameraMovement : MonoBehaviour
             transform.rotation = SystemCreator.EditorCameraRotation;
         }
 
-        detailedGrid = GameObject.Find("Detailed Grid");
+        detailedGrid = GameObject.Find("DetailedGrid");
         grid = GameObject.Find("Grid");
         shipyard = GameObject.Find("Shipyard");
 
-        camToggle = GameObject.Find("CamToggle").GetComponent<Toggle>();
+        camToggle = GameObject.Find("Cam Toggle").GetComponent<Toggle>();
+        camToggle.onValueChanged.AddListener(delegate { toggleChange(); });
         camParent = GameObject.Find("Cam Parent").transform;
 
         detailedGrid.SetActive(false);
@@ -43,13 +45,13 @@ public class PlanetaryCameraMovement : MonoBehaviour
             // Spherical camera with limited rotation
             if (Input.GetMouseButton(2))
             {
-                dummyCamera = Instantiate(transform.gameObject);
+                GameObject dummyCamera = Instantiate(transform.gameObject);
                 Transform dummyTransform = dummyCamera.transform;
                 dummyTransform.SetParent(transform.parent, false);
                 dummyTransform.RotateAround(transform.parent.position, Vector3.up, Input.GetAxis("Mouse X") * 2f);
                 dummyTransform.RotateAround(transform.parent.position, dummyTransform.right, Input.GetAxis("Mouse Y") * -2f);
                 dummyTransform.rotation = Quaternion.Euler(dummyTransform.rotation.eulerAngles.x, dummyTransform.rotation.eulerAngles.y, 0f);
-                
+
                 angleX = dummyTransform.rotation.eulerAngles.x;
                 if ((0 <= angleX && angleX <= 70) || (290 <= angleX && angleX < 360))
                 {
@@ -61,67 +63,72 @@ public class PlanetaryCameraMovement : MonoBehaviour
             }
             else
             {
-                angleX = transform.rotation.eulerAngles.x;
 
                 // Zoom with scrollwheel
                 float scroll = Input.GetAxis("Mouse ScrollWheel");
-                float distance = Vector3.Magnitude(transform.localPosition);
+                float Magnitude = Vector3.Magnitude(transform.localPosition);
                 if (scroll > 0)
                 {
-                    if(PlanetarySelectionController.Selection.name == "Planet")
+                    if (camToggle.isOn && Magnitude > 15f)
+                        transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
+                    else if (PlanetarySelectionController.Selection.name == "Planet")
                     {
-                        if(distance > 200f)
+                        if(Magnitude > 200f)
                             transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
                     }
-                    else if(distance > PlanetarySelectionController.Selection
                     //Minimal distance from camera equal to selection bounds
-                    .GetComponent<MeshCollider>().bounds.size.z)
+                    else if (Magnitude > PlanetarySelectionController.Selection
+                                        .GetComponent<MeshCollider>().bounds.size.z)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
+                    
                 }
                 else if (scroll < 0)
                 {
-                    if(PlanetarySelectionController.Selection.name == "Planet" && distance < 700f)
+                    if (camToggle.isOn && Magnitude < 700f)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
-                    else if(distance < 50f)
+                    else if (PlanetarySelectionController.Selection.name == "Planet" && Magnitude < 700f)
+                        transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
+                    else if (Magnitude < 50f)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
                 }
 
+                angleX = transform.rotation.eulerAngles.x;
                 // Moving free camera
-                if(camToggle.isOn)
+                if (camToggle.isOn)
                 {
-                    if ( Input.mousePosition.y >= Screen.height * 0.95)
+                    if (Input.mousePosition.y >= Screen.height * 0.95)
                     {
                         // Translation speed adjusted to X angle
                         float speed;
-                        if(0 <= angleX && angleX <= 80) speed = Mathf.Sin((angleX * Mathf.PI)/180);
+                        if (0 <= angleX && angleX <= 80) speed = Mathf.Sin((angleX * Mathf.PI) / 180);
                         else
                         {
                             angleX %= 90;
-                            speed = -Mathf.Cos((angleX * Mathf.PI)/180);
+                            speed = -Mathf.Cos((angleX * Mathf.PI) / 180);
                         }
                         Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
                         camParent.Translate(freeCamForward * Time.deltaTime * speed
                         * 1000f, Space.World);
                         Debug.Log(speed);
                     }
-                    else if ( Input.mousePosition.y <= Screen.height * 0.05)
+                    else if (Input.mousePosition.y <= Screen.height * 0.05)
                     {
                         float speed;
-                        if(0 <= angleX && angleX <= 80) speed = -Mathf.Sin((angleX * Mathf.PI)/180);
+                        if (0 <= angleX && angleX <= 80) speed = -Mathf.Sin((angleX * Mathf.PI) / 180);
                         else
                         {
                             angleX %= 90;
-                            speed = Mathf.Cos((angleX * Mathf.PI)/180);
+                            speed = Mathf.Cos((angleX * Mathf.PI) / 180);
                         }
                         Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
                         camParent.Translate(freeCamForward * Time.deltaTime * speed
                         * 1000f, Space.World);
                     }
-                    if ( Input.mousePosition.x >= Screen.width * 0.95)
+                    if (Input.mousePosition.x >= Screen.width * 0.95)
                     {
                         camParent.Translate(transform.right * Time.deltaTime * 700f, Space.World);
                     }
-                    else if ( Input.mousePosition.x <= Screen.width * 0.05)
+                    else if (Input.mousePosition.x <= Screen.width * 0.05)
                     {
                         camParent.Translate(-transform.right * Time.deltaTime * 700f, Space.World);
                     }
@@ -139,6 +146,28 @@ public class PlanetaryCameraMovement : MonoBehaviour
         {
             detailedGrid.SetActive(false);
             grid.SetActive(true);
+        }
+    }
+
+    private void toggleChange()
+    {
+        if(!camToggle.isOn)
+        {
+            if(PlanetarySelectionController.isPlanetSelected())
+                transform.localPosition =
+                    Vector3.Normalize(transform.localPosition) * 500f;
+            else
+                transform.localPosition =
+                Vector3.Normalize(transform.localPosition) * 25f;
+        }
+        else
+        {
+            if(PlanetarySelectionController.isPlanetSelected())
+                transform.localPosition =
+                    Vector3.Normalize(transform.localPosition) * Mathf.Clamp(Magnitude, 200f, 700f);
+            else
+                transform.localPosition =
+                    Vector3.Normalize(transform.localPosition) * Mathf.Clamp(Magnitude, 15f, 700f);
         }
     }
 }
