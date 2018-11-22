@@ -50,6 +50,8 @@ public class PlanetarySelectionController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
+                if (hit.transform == Selection) // IMPROVE AT MULTIPLE SELECTION!
+                    clonePosition(Selection.transform, transform.parent);
                 Selection = hit.transform.gameObject;
                 selectionText.text = "Selection:" + Selection.gameObject.name;
                 if(!camToggle.isOn)
@@ -64,8 +66,6 @@ public class PlanetarySelectionController : MonoBehaviour
             }
             PlanetaryCameraMovement.IsLocked = false;
         }
-        if (!camToggle.isOn)
-            clonePosition(Selection.transform, transform.parent);
     }
     public static bool isPlanetSelected()
     {

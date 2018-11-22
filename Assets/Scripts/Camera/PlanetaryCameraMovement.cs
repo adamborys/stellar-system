@@ -66,7 +66,7 @@ public class PlanetaryCameraMovement : MonoBehaviour
 
                 // Zoom with scrollwheel
                 float scroll = Input.GetAxis("Mouse ScrollWheel");
-                float Magnitude = Vector3.Magnitude(transform.localPosition);
+                Magnitude = Vector3.Magnitude(transform.localPosition);
                 if (scroll > 0)
                 {
                     if (camToggle.isOn && Magnitude > 15f)
@@ -97,28 +97,14 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 if (camToggle.isOn)
                 {
                     float speed = 0.01f;
-                    speed += Magnitude * 10f;
+                    speed += Magnitude;
                     Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
                     if (Input.mousePosition.y >= Screen.height * 0.95)
                     {
-                        // Translation speed adjusted to X angle
-                        /* if (0 <= angleX && angleX <= 80) speed = Mathf.Sin((angleX * Mathf.PI) / 180);
-                        else
-                        {
-                            angleX %= 90;
-                            speed += -Mathf.Cos((angleX * Mathf.PI) / 180);
-                        }*/
                         camParent.Translate(freeCamForward * Time.deltaTime * speed, Space.World);
-                        Debug.Log(speed);
                     }
                     else if (Input.mousePosition.y <= Screen.height * 0.05)
                     {
-                        /* if (0 <= angleX && angleX <= 80) speed = -Mathf.Sin((angleX * Mathf.PI) / 180);
-                        else
-                        {
-                            angleX += 90;
-                            speed += Mathf.Cos((angleX * Mathf.PI) / 180);
-                        }*/
                         camParent.Translate(-freeCamForward * Time.deltaTime * speed, Space.World);
                     }
                     if (Input.mousePosition.x >= Screen.width * 0.95)
