@@ -52,7 +52,7 @@ public class PlanetarySelectionController : MonoBehaviour
             {
                 Selection = hit.transform.gameObject;
                 selectionText.text = "Selection:" + Selection.gameObject.name;
-                if(camToggle.isOn)
+                if(!camToggle.isOn)
                 {
                     if(Selection == Planet)
                         transform.localPosition =
