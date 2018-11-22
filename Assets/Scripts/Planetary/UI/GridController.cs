@@ -27,12 +27,10 @@ public class GridController : MonoBehaviour
             LineRenderer lineYRenderer = lineY.AddComponent<LineRenderer>();
 
             if(i % narrowLinesInterval == 0)
-                lineXRenderer.startWidth = lineYRenderer.startWidth = 
-                lineXRenderer.endWidth = lineYRenderer.endWidth = NarrowLineWidth;
+                lineXRenderer.widthMultiplier = lineYRenderer.widthMultiplier = NarrowLineWidth;
             else
             {
-                lineXRenderer.startWidth = lineYRenderer.startWidth = 
-                lineXRenderer.endWidth = lineYRenderer.endWidth = ThinLineWidth;
+                lineXRenderer.widthMultiplier = lineYRenderer.widthMultiplier = ThinLineWidth;
             }
 
             lineXRenderer.material = lineYRenderer.material = Material;

@@ -96,41 +96,39 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 // Moving free camera
                 if (camToggle.isOn)
                 {
+                    float speed = 0.02f;
+                    Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
                     if (Input.mousePosition.y >= Screen.height * 0.95)
                     {
                         // Translation speed adjusted to X angle
-                        float speed;
-                        if (0 <= angleX && angleX <= 80) speed = Mathf.Sin((angleX * Mathf.PI) / 180);
+                        /* if (0 <= angleX && angleX <= 80) speed = Mathf.Sin((angleX * Mathf.PI) / 180);
                         else
                         {
                             angleX %= 90;
-                            speed = -Mathf.Cos((angleX * Mathf.PI) / 180);
-                        }
-                        Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
+                            speed += -Mathf.Cos((angleX * Mathf.PI) / 180);
+                        }*/
                         camParent.Translate(freeCamForward * Time.deltaTime * speed
                         * 1000f, Space.World);
                         Debug.Log(speed);
                     }
                     else if (Input.mousePosition.y <= Screen.height * 0.05)
                     {
-                        float speed;
-                        if (0 <= angleX && angleX <= 80) speed = -Mathf.Sin((angleX * Mathf.PI) / 180);
+                        /* if (0 <= angleX && angleX <= 80) speed = -Mathf.Sin((angleX * Mathf.PI) / 180);
                         else
                         {
-                            angleX %= 90;
-                            speed = Mathf.Cos((angleX * Mathf.PI) / 180);
-                        }
-                        Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
+                            angleX += 90;
+                            speed += Mathf.Cos((angleX * Mathf.PI) / 180);
+                        }*/
                         camParent.Translate(freeCamForward * Time.deltaTime * speed
                         * 1000f, Space.World);
                     }
                     if (Input.mousePosition.x >= Screen.width * 0.95)
                     {
-                        camParent.Translate(transform.right * Time.deltaTime * 700f, Space.World);
+                        camParent.Translate(transform.right * Time.deltaTime * speed * 1000f, Space.World);
                     }
                     else if (Input.mousePosition.x <= Screen.width * 0.05)
                     {
-                        camParent.Translate(-transform.right * Time.deltaTime * 700f, Space.World);
+                        camParent.Translate(-transform.right * Time.deltaTime * speed * 1000f, Space.World);
                     }
                 }
             }

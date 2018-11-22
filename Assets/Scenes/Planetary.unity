@@ -156,10 +156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineDrawDistance: 1000
-  Interval: 25
+  Interval: 100
   NarrowLinesInterval: 2
-  NarrowLineWidth: 0.4
-  ThinLineWidth: 0.15
+  NarrowLineWidth: 0.6
+  ThinLineWidth: 0.3
   Material: {fileID: 2100000, guid: 32e030e2e98e59a4889c96eda91d24e1, type: 2}
 --- !u!1 &294938782
 GameObject:
@@ -808,10 +808,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineDrawDistance: 1000
-  Interval: 10
-  NarrowLinesInterval: 10
-  NarrowLineWidth: 0.15
-  ThinLineWidth: 0.075
+  Interval: 5
+  NarrowLinesInterval: 5
+  NarrowLineWidth: 0.04
+  ThinLineWidth: 0.02
   Material: {fileID: 2100000, guid: 32e030e2e98e59a4889c96eda91d24e1, type: 2}
 --- !u!4 &1459771685
 Transform:
