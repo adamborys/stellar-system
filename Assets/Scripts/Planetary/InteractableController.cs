@@ -4,17 +4,10 @@ using UnityEngine;
 
 public abstract class InteractableController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public SelectionIndicator Indicator;
+    
+    protected virtual void Start()
     {
-        
+        Indicator = new SelectionIndicator(gameObject);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //protected void InteractableController() {}
 }

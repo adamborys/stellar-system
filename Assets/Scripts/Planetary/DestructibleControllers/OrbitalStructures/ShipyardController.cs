@@ -7,8 +7,9 @@ public class ShipyardController : OrbitalStructureController
     private Transform clockwise, cclockwise;
     private bool isConstructing;
     
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         clockwise = GameObject.Find("Clockwise").transform;
         cclockwise = GameObject.Find("CClockwise").transform;
         isConstructing = true;

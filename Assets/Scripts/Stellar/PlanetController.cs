@@ -70,7 +70,7 @@ public class PlanetController : MonoBehaviour
   {
     for (int i = 0; i < StellarSystem.PlanetQuantity; i++)
     {
-      float distanceFromStar = Vector3.Distance(System.PlanetTransforms[i].position, new Vector3());
+      float distanceFromStar = Vector3.Distance(System.PlanetTransforms[i].position, Vector3.zero);
       float orbitalSpeed = (GameSpeed / 100) * ((i + 1) / (System.Planets[i].OrbitalPeriod * distanceFromStar));
       System.PlanetProgresses[i] += Time.fixedDeltaTime * orbitalSpeed;
       System.PlanetProgresses[i] %= 1f;

@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class DestructibleController : InteractableController
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Start();
     }
 }

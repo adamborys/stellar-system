@@ -20,7 +20,7 @@ public class OrbitProvider : MonoBehaviour {
 
 		for(int i = 0; i < Segments; i++) {
 			Vector2 position = OrbitShape.Evaluate(((float)i/(float)Segments));
-			points[i] = new Vector3(position.x, 0f, position.y);
+			points[i] = new Vector3();
 		}
 
 		points[Segments] = points[0];

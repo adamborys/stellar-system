@@ -65,6 +65,7 @@
      <Compile Include="Assets\DataModels\Planetary\Interactable.cs" />
      <Compile Include="Assets\DataModels\Planetary\Interactables\Planet.cs" />
      <Compile Include="Assets\DataModels\Planetary\UI\Action.cs" />
+     <Compile Include="Assets\DataModels\Planetary\UI\SelectionIndicator.cs" />
      <Compile Include="Assets\DataModels\Stellar\Ellipse.cs" />
      <Compile Include="Assets\DataModels\Stellar\PlanetInfo.cs" />
      <Compile Include="Assets\DataModels\Stellar\StellarSystem.cs" />
@@ -79,6 +80,7 @@
      <Compile Include="Assets\Scripts\Planetary\DestructibleControllers\OrbitalStructureController.cs" />
      <Compile Include="Assets\Scripts\Planetary\DestructibleControllers\OrbitalStructures\ShipyardController.cs" />
      <Compile Include="Assets\Scripts\Planetary\DestructibleControllers\ShipController.cs" />
+     <Compile Include="Assets\Scripts\Planetary\DestructibleControllers\Ships\SteerableShipController.cs" />
      <Compile Include="Assets\Scripts\Planetary\InteractableController.cs" />
      <Compile Include="Assets\Scripts\Planetary\UI\ActionPanel\ActionProgress.cs" />
      <Compile Include="Assets\Scripts\Planetary\UI\ActionPanel\ActionsController.cs" />

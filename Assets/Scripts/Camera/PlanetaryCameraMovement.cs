@@ -11,7 +11,6 @@ public class PlanetaryCameraMovement : MonoBehaviour
     private GameObject shipyard;
     private GameObject detailedGrid, grid;
     private Toggle camToggle;
-    private Transform camParent;
 
     void Start()
     {
@@ -27,14 +26,13 @@ public class PlanetaryCameraMovement : MonoBehaviour
 
         camToggle = GameObject.Find("Cam Toggle").GetComponent<Toggle>();
         camToggle.onValueChanged.AddListener(delegate { toggleChange(); });
-        camParent = GameObject.Find("Cam Parent").transform;
 
         detailedGrid.SetActive(false);
     }
 
     void Update()
     {
-        shipyard.transform.RotateAround(new Vector3(), Vector3.up, Time.deltaTime);
+        
     }
 
     void LateUpdate()
@@ -63,7 +61,6 @@ public class PlanetaryCameraMovement : MonoBehaviour
             }
             else
             {
-
                 // Zoom with scrollwheel
                 float scroll = Input.GetAxis("Mouse ScrollWheel");
                 Magnitude = Vector3.Magnitude(transform.localPosition);
@@ -101,19 +98,19 @@ public class PlanetaryCameraMovement : MonoBehaviour
                     Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
                     if (Input.mousePosition.y >= Screen.height * 0.95)
                     {
-                        camParent.Translate(freeCamForward * Time.deltaTime * speed, Space.World);
+                        transform.parent.Translate(freeCamForward * Time.deltaTime * speed, Space.World);
                     }
                     else if (Input.mousePosition.y <= Screen.height * 0.05)
                     {
-                        camParent.Translate(-freeCamForward * Time.deltaTime * speed, Space.World);
+                        transform.parent.Translate(-freeCamForward * Time.deltaTime * speed, Space.World);
                     }
                     if (Input.mousePosition.x >= Screen.width * 0.95)
                     {
-                        camParent.Translate(transform.right * Time.deltaTime * speed, Space.World);
+                        transform.parent.Translate(transform.right * Time.deltaTime * speed, Space.World);
                     }
                     else if (Input.mousePosition.x <= Screen.width * 0.05)
                     {
-                        camParent.Translate(-transform.right * Time.deltaTime * speed, Space.World);
+                        transform.parent.Translate(-transform.right * Time.deltaTime * speed, Space.World);
                     }
                 }
             }

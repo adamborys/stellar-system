@@ -13,7 +13,7 @@ public class PlanetarySelectionController : MonoBehaviour
     private Ray ray;
     private Toggle camToggle;
     private Text selectionText;
-    private Transform from;
+    private SelectionIndicator selectionIndicator;
     private int pointerID = -1;
     private void Awake()
     {
@@ -29,8 +29,6 @@ public class PlanetarySelectionController : MonoBehaviour
         camToggle = GameObject.Find("Cam Toggle").GetComponent<Toggle>();
         selectionText = GameObject.Find("Selection Text").GetComponent<Text>();
         camToggle.isOn = false;
-
-        from = GameObject.Find("Cam Parent").transform;
     }
 
     void Update()
@@ -51,8 +49,12 @@ public class PlanetarySelectionController : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform == Selection) // IMPROVE AT MULTIPLE SELECTION!
-                    clonePosition(Selection.transform, transform.parent);
-                Selection = hit.transform.gameObject;
+                {
+                    if (camToggle.isOn)
+                        clonePosition(hit.transform, transform.parent);
+                }
+                else
+                    Selection = hit.transform.gameObject;
                 selectionText.text = "Selection:" + Selection.gameObject.name;
                 if(!camToggle.isOn)
                 {
@@ -66,6 +68,8 @@ public class PlanetarySelectionController : MonoBehaviour
             }
             PlanetaryCameraMovement.IsLocked = false;
         }
+        if (!camToggle.isOn) // IMPROVE AT MULTIPLE SELECTION!
+            clonePosition(Selection.transform, transform.parent);
     }
     public static bool isPlanetSelected()
     {
@@ -78,4 +82,6 @@ public class PlanetarySelectionController : MonoBehaviour
         to.position = from.position;
         to.localPosition = from.localPosition;
     }
+
+
 }
