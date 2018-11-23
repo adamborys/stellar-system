@@ -38,40 +38,61 @@ public class SelectionIndicator
 
         float length;
         if(bounds.size.x > bounds.size.z)
-            length = bounds.size.x / 10;
+            length = bounds.size.x / (10*indicatedObject.transform.localScale.x);
         else
-            length = bounds.size.z / 10;
+            length = bounds.size.z / (10*indicatedObject.transform.localScale.x);
 
-        Debug.Log(bounds.size.x + " " + bounds.size.z);
+        this.nW.widthMultiplier = this.nE.widthMultiplier = this.sW.widthMultiplier = this.sE.widthMultiplier = 1;
 
-        float x = bounds.size.x / 2, y = bounds.size.z / 2;
+        float x = (bounds.size.x + 2) / (2*indicatedObject.transform.localScale.x), 
+              y = (bounds.size.z + 2) / (2*indicatedObject.transform.localScale.x);
         this.nW.SetPositions(
             new Vector3 [] {
                 new Vector3(-x , 0, y - length),
                 new Vector3(-x , 0, y ),
                 new Vector3(-x + length, 0, y )
-            }
+            }/*
+            new Vector3 [] {
+                new Vector3(-100 , 0, 75),
+                new Vector3(-100 , 0, 100 ),
+                new Vector3(-75, 0, 100 )
+            }*/
         );
         this.nE.SetPositions(
             new Vector3 [] {
                 new Vector3(x - length, 0, y ),
                 new Vector3(x , 0, y ),
                 new Vector3(x , 0, y - length)
-            }
+            }/*
+            new Vector3 [] {
+                new Vector3(75 , 0, 100),
+                new Vector3(100 , 0, 100),
+                new Vector3(100 , 0, 75 )
+            }*/
         );
         this.sW.SetPositions(
             new Vector3 [] {
                 new Vector3(-x , 0, -y + length),
                 new Vector3(-x , 0, - y ),
                 new Vector3(-x + length, 0, -y )
-            }
+            }/*
+            new Vector3 [] {
+                new Vector3(-100 , 0, -75),
+                new Vector3(-100 , 0, -100),
+                new Vector3(-75, 0, -100 )
+            }*/
         );
         this.sE.SetPositions(
             new Vector3 [] {
                 new Vector3(x - length, 0, -y ),
                 new Vector3(x , 0, -y ),
                 new Vector3(x , 0, -y + length)
-            }
+            }/*
+            new Vector3 [] {
+                new Vector3(75 , 0, -100),
+                new Vector3(100 , 0, -100),
+                new Vector3(100, 0, -75 )
+            }*/
         );
     }
 
@@ -96,7 +117,6 @@ public class SelectionIndicator
         this.nEHolder.transform.SetParent(indicatedObject.transform, false);
         this.sWHolder.transform.SetParent(indicatedObject.transform, false);
         this.sEHolder.transform.SetParent(indicatedObject.transform, false);
-        this.nW.alignment = this.nE.alignment = this.sW.alignment = this.sE.alignment = LineAlignment.TransformZ;
         this.nW.material = this.nE.material = this.sW.material = this.sE.material = 
         Resources.Load(@"Planetary\Materials\Selection") as Material;
     }
