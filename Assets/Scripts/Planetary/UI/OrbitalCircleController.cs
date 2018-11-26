@@ -25,13 +25,13 @@ public class OrbitalCircleController : MonoBehaviour
     {
         outlineRenderer.widthMultiplier = lineWidth;
 
-        float deltaTheta = (2f * Mathf.PI) / vertexCount;
-        float theta = 0f;
+        float deltaTheta = (2 * Mathf.PI) / vertexCount;
+        float theta = 0;
 
         lineRenderer.positionCount = vertexCount;
         for (int i=0; i<lineRenderer.positionCount; i++)
         {
-            Vector3 pos = new Vector3(radius * Mathf.Cos(theta), radius * Mathf.Sin(theta), 0f);
+            Vector3 pos = new Vector3(radius * Mathf.Cos(theta), radius * Mathf.Sin(theta), 0);
             lineRenderer.SetPosition(i, pos);
             theta += deltaTheta;
         }

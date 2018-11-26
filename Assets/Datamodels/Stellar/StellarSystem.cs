@@ -13,7 +13,7 @@ public class StellarSystem
   public static int PlanetQuantity;
   public static float GameSpeed = 0;
   public static float GameTime = 0;
-  public static float GameDuration = 1800f;
+  public static float GameDuration = 1800;
   public static bool IsStarted = false;
   public static bool IsPaused = false;
 
@@ -34,7 +34,7 @@ public class StellarSystem
       GameObject planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
       planet.name = "Planet";
       planet.transform.localScale = new Vector3(this.Planets[i].Scale, this.Planets[i].Scale, this.Planets[i].Scale);
-      planet.GetComponent<SphereCollider>().radius = 1f;
+      planet.GetComponent<SphereCollider>().radius = 1;
 
       this.PlanetTransforms.Add(planet.transform);
       this.PlanetTransforms[i].parent = creator.Orbits[i].transform;

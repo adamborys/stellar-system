@@ -29,6 +29,11 @@
         <para>Controls whether to limit user tracking at runtime.</para>
       </summary>
     </member>
+    <member name="P:UnityEngine.Analytics.Analytics.playerOptedOut">
+      <summary>
+        <para>Reports whether the player has opted out of data collection.</para>
+      </summary>
+    </member>
     <member name="M:UnityEngine.Analytics.Analytics.CustomEvent(System.String,System.Collections.Generic.IDictionary`2&lt;System.String,System.Object&gt;)">
       <summary>
         <para>Custom Events (optional).</para>

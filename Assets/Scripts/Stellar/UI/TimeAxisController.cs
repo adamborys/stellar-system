@@ -66,10 +66,12 @@ public class TimeAxisController : MonoBehaviour
   void sliderChange()
   {
     if (timeAxisSlider.value < startSliderValue)
-      timeAxisSlider.value = startSliderValue;/*
-    else if (StellarSystem.GameDuration == 900f && timeAxisSlider.value - startSliderValue > 0.33)
+      timeAxisSlider.value = startSliderValue;
+      
+    /* RESTRICTIONS AGAINST PERFORMANCE ISSUES
+    else if (StellarSystem.GameDuration == 900 && timeAxisSlider.value - startSliderValue > 0.33)
       timeAxisSlider.value = startSliderValue + 0.33f;
-    else if (StellarSystem.GameDuration == 1800f && timeAxisSlider.value - startSliderValue > 0.25)
+    else if (StellarSystem.GameDuration == 1800 && timeAxisSlider.value - startSliderValue > 0.25)
       timeAxisSlider.value = startSliderValue + 0.25f; */
 
     float stopTime = StellarSystem.GameDuration * startSliderValue;

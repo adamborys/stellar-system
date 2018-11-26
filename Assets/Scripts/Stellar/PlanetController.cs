@@ -57,13 +57,13 @@ public class PlanetController : MonoBehaviour
   public Vector3 GetPosition(int index, float progress)
   {
     Vector2 position = System.Orbits[index].OrbitShape.Evaluate(progress);
-    return new Vector3(position.x, 0f, position.y);
+    return new Vector3(position.x, 0, position.y);
   }
 
   public void SetPosition(int index, float progress)
   {
     Vector2 position = System.Orbits[index].OrbitShape.Evaluate(progress);
-    System.PlanetTransforms[index].localPosition = new Vector3(position.x, 0f, position.y);
+    System.PlanetTransforms[index].localPosition = new Vector3(position.x, 0, position.y);
   }
 
   public void UpdatePlanetPositions()
@@ -73,7 +73,7 @@ public class PlanetController : MonoBehaviour
       float distanceFromStar = Vector3.Distance(System.PlanetTransforms[i].position, Vector3.zero);
       float orbitalSpeed = (GameSpeed / 100) * ((i + 1) / (System.Planets[i].OrbitalPeriod * distanceFromStar));
       System.PlanetProgresses[i] += Time.fixedDeltaTime * orbitalSpeed;
-      System.PlanetProgresses[i] %= 1f;
+      System.PlanetProgresses[i] %= 1;
     }
   }
   public void PredictPlanetPositions(float startTime, float targetTime, float[] stoppedProgresses)
@@ -88,7 +88,7 @@ public class PlanetController : MonoBehaviour
         float distanceFromStar = Vector3.Distance(GetPosition(i, predictedProgresses[i]), new Vector3());
         float orbitalSpeed = (GameSpeed / 100) * ((i + 1) / (System.Planets[i].OrbitalPeriod * distanceFromStar));
         predictedProgresses[i] += Time.fixedDeltaTime * orbitalSpeed;
-        predictedProgresses[i] %= 1f;
+        predictedProgresses[i] %= 1;
       }
       SetPosition(i, predictedProgresses[i]);
     }

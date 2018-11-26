@@ -46,9 +46,9 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 GameObject dummyCamera = Instantiate(transform.gameObject);
                 Transform dummyTransform = dummyCamera.transform;
                 dummyTransform.SetParent(transform.parent, false);
-                dummyTransform.RotateAround(transform.parent.position, Vector3.up, Input.GetAxis("Mouse X") * 2f);
-                dummyTransform.RotateAround(transform.parent.position, dummyTransform.right, Input.GetAxis("Mouse Y") * -2f);
-                dummyTransform.rotation = Quaternion.Euler(dummyTransform.rotation.eulerAngles.x, dummyTransform.rotation.eulerAngles.y, 0f);
+                dummyTransform.RotateAround(transform.parent.position, Vector3.up, Input.GetAxis("Mouse X") * 2);
+                dummyTransform.RotateAround(transform.parent.position, dummyTransform.right, Input.GetAxis("Mouse Y") * -2);
+                dummyTransform.rotation = Quaternion.Euler(dummyTransform.rotation.eulerAngles.x, dummyTransform.rotation.eulerAngles.y, 0);
 
                 angleX = dummyTransform.rotation.eulerAngles.x;
                 if ((0 <= angleX && angleX <= 70) || (290 <= angleX && angleX < 360))
@@ -66,11 +66,11 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 Magnitude = Vector3.Magnitude(transform.localPosition);
                 if (scroll > 0)
                 {
-                    if (camToggle.isOn && Magnitude > 15f)
+                    if (camToggle.isOn && Magnitude > 15)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
                     else if (PlanetarySelectionController.isPlanetSelected())
                     {
-                        if(Magnitude > 200f)
+                        if(Magnitude > 200)
                             transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
                     }
                     //Minimal distance from camera equal to selection bounds
@@ -81,11 +81,11 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 }
                 else if (scroll < 0)
                 {
-                    if (camToggle.isOn && Magnitude < 700f)
+                    if (camToggle.isOn && Magnitude < 700)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
-                    else if (PlanetarySelectionController.Selection.name == "Planet" && Magnitude < 700f)
+                    else if (PlanetarySelectionController.Selection.name == "Planet" && Magnitude < 700)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
-                    else if (Magnitude < 50f)
+                    else if (Magnitude < 50)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
                 }
 
@@ -93,22 +93,22 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 // Moving free camera
                 if (camToggle.isOn)
                 {
-                    float speed = 0.01f;
+                    float speed = 0.1f;
                     speed += Magnitude;
                     Vector3 freeCamForward = new Vector3(transform.forward.x, 0, transform.forward.z);
-                    if (Input.mousePosition.y >= Screen.height * 0.95)
+                    if (Input.mousePosition.y >= Screen.height * 0.975)
                     {
                         transform.parent.Translate(freeCamForward * Time.deltaTime * speed, Space.World);
                     }
-                    else if (Input.mousePosition.y <= Screen.height * 0.05)
+                    else if (Input.mousePosition.y <= Screen.height * 0.025)
                     {
                         transform.parent.Translate(-freeCamForward * Time.deltaTime * speed, Space.World);
                     }
-                    if (Input.mousePosition.x >= Screen.width * 0.95)
+                    if (Input.mousePosition.x >= Screen.width * 0.975)
                     {
                         transform.parent.Translate(transform.right * Time.deltaTime * speed, Space.World);
                     }
-                    else if (Input.mousePosition.x <= Screen.width * 0.05)
+                    else if (Input.mousePosition.x <= Screen.width * 0.025)
                     {
                         transform.parent.Translate(-transform.right * Time.deltaTime * speed, Space.World);
                     }
@@ -135,19 +135,19 @@ public class PlanetaryCameraMovement : MonoBehaviour
         {
             if(PlanetarySelectionController.isPlanetSelected())
                 transform.localPosition =
-                    Vector3.Normalize(transform.localPosition) * 500f;
+                    Vector3.Normalize(transform.localPosition) * 500;
             else
                 transform.localPosition =
-                Vector3.Normalize(transform.localPosition) * 25f;
+                Vector3.Normalize(transform.localPosition) * 25;
         }
         else
         {
             if(PlanetarySelectionController.isPlanetSelected())
                 transform.localPosition =
-                    Vector3.Normalize(transform.localPosition) * Mathf.Clamp(Magnitude, 200f, 700f);
+                    Vector3.Normalize(transform.localPosition) * Mathf.Clamp(Magnitude, 200, 700);
             else
                 transform.localPosition =
-                    Vector3.Normalize(transform.localPosition) * Mathf.Clamp(Magnitude, 15f, 700f);
+                    Vector3.Normalize(transform.localPosition) * Mathf.Clamp(Magnitude, 15, 700);
         }
     }
 }

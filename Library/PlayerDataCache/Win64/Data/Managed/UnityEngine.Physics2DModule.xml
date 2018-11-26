@@ -488,7 +488,7 @@
     </member>
     <member name="M:UnityEngine.Collision2D.GetContacts(UnityEngine.ContactPoint2D[])">
       <summary>
-        <para>Retrieves all contact points in for contacts between collider and otherCollider.</para>
+        <para>Retrieves all contact points for contacts between collider and otherCollider.</para>
       </summary>
       <param name="contacts">An array of ContactPoint2D used to receive the results.</param>
       <returns>
@@ -1309,6 +1309,11 @@
     <member name="P:UnityEngine.Physics2D.queriesStartInColliders">
       <summary>
         <para>Sets the raycasts or linecasts that start inside Colliders to detect or not detect those Colliders.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Physics2D.reuseCollisionCallbacks">
+      <summary>
+        <para>Determines whether the garbage collector should reuse only a single instance of a Collision2D type for all collision callbacks.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Physics2D.showColliderAABB">

@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/StellarMenu.unity
     guid: fb1fa13547adee4459953389b81a4b55
   - enabled: 1
     path: Assets/Scenes/Stellar.unity
     guid: 70b44138674894445b0e5c672b2c0310
+  - enabled: 1
+    path: Assets/Scenes/Planetary.unity
+    guid: 52b8a6b5ab12bec4d8a154dfb41f9065
   m_configObjects: {}

@@ -1,6 +1,0 @@
-{
-    "name": "Unity.Properties.Editor",
-    "references": ["Unity.Properties"],
-    "includePlatforms": ["Editor"],
-    "excludePlatforms": []
-}

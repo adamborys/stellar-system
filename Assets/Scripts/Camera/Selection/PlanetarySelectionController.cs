@@ -38,7 +38,6 @@ public class PlanetarySelectionController : MonoBehaviour
             // Fail-safe GUI blocking Raycast
             if (EventSystem.current.IsPointerOverGameObject(pointerID))
             {
-                Debug.Log("GUI Hit!");
                 return;
             }
             
@@ -60,10 +59,10 @@ public class PlanetarySelectionController : MonoBehaviour
                 {
                     if(Selection == Planet)
                         transform.localPosition =
-                            Vector3.Normalize(transform.localPosition) * 500f;
+                            Vector3.Normalize(transform.localPosition) * 500;
                     else
                         transform.localPosition =
-                            Vector3.Normalize(transform.localPosition) * 25f;
+                            Vector3.Normalize(transform.localPosition) * 25;
                 }
             }
             PlanetaryCameraMovement.IsLocked = false;
@@ -82,6 +81,4 @@ public class PlanetarySelectionController : MonoBehaviour
         to.position = from.position;
         to.localPosition = from.localPosition;
     }
-
-
 }

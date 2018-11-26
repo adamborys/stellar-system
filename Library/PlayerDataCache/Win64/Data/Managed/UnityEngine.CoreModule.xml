@@ -19102,7 +19102,7 @@ Only usable on Android, Windows Phone or Windows Tablets.</para>
     </member>
     <member name="P:UnityEngine.Mesh.isReadable">
       <summary>
-        <para>Returns a bool indicated whether the mesh is read/write enabled.</para>
+        <para>Returns true if the Mesh is read/write enabled, or false if it is not.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Mesh.normals">
@@ -19974,9 +19974,9 @@ The Player ID is always 1, because only one Editor can be connected.</param>
     </member>
     <member name="M:UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)">
       <summary>
-        <para>Makes the object target not be destroyed automatically when loading a new Scene.</para>
+        <para>Do not destroy the target Object when loading a new Scene.</para>
       </summary>
-      <param name="target">The object which is not destroyed on Scene change.</param>
+      <param name="target">An Object not destroyed on Scene change.</param>
     </member>
     <member name="M:UnityEngine.Object.FindObjectOfType(System.Type)">
       <summary>
@@ -20456,6 +20456,11 @@ The Player ID is always 1, because only one Editor can be connected.</param>
         <para>The accumulated speed of the parent Playable during the PlayableGraph traversal.</para>
       </summary>
     </member>
+    <member name="P:UnityEngine.Playables.FrameData.effectivePlayState">
+      <summary>
+        <para>The accumulated play state of this playable.</para>
+      </summary>
+    </member>
     <member name="P:UnityEngine.Playables.FrameData.effectiveSpeed">
       <summary>
         <para>The accumulated speed of the Playable during the PlayableGraph traversal.</para>
@@ -20644,7 +20649,10 @@ The Player ID is always 1, because only one Editor can be connected.</param>
     </member>
     <member name="M:UnityEngine.Playables.PlayableBehaviour.OnBehaviourPause(UnityEngine.Playables.Playable,UnityEngine.Playables.FrameData)">
       <summary>
-        <para>This function is called when the Playable play state is changed to Playables.PlayState.Paused.</para>
+        <para>This method is invoked when one of the following situations occurs:
+&lt;br&gt;&lt;br&gt;
+     The effective play state during traversal is changed to Playables.PlayState.Paused. This state is indicated by FrameData.effectivePlayState.&lt;br&gt;&lt;br&gt;
+     The PlayableGraph is stopped while the playable play state is Playing. This state is indicated by PlayableGraph.IsPlaying returning true.</para>
       </summary>
       <param name="playable">The Playable that owns the current PlayableBehaviour.</param>
       <param name="info">A FrameData structure that contains information about the current frame context.</param>
@@ -29498,10 +29506,11 @@ A Scene may be invalid if, for example, you tried to open a Scene that does not 
         <para>Set and get global garbage collector operation mode.</para>
       </summary>
     </member>
-    <member name="F:UnityEngine.Scripting.GarbageCollector.GCModeChanged">
+    <member name="?:UnityEngine.Scripting.GarbageCollector.GCModeChanged(System.Action`1&lt;UnityEngine.Scripting.GarbageCollector/Mode&gt;)">
       <summary>
         <para>Subscribe to this event to get notified when GarbageCollector.GCMode changes.</para>
       </summary>
+      <param name="value"></param>
     </member>
     <member name="T:UnityEngine.Scripting.GarbageCollector.Mode">
       <summary>
@@ -31002,14 +31011,14 @@ Returns NULL if there is no associated alpha texture for the source sprite. This
       <summary>
         <para>StaticBatchingUtility.Combine prepares all children of the staticBatchRoot for static batching.</para>
       </summary>
-      <param name="staticBatchRoot"></param>
+      <param name="staticBatchRoot">The GameObject that should become the root of the combined batch.</param>
     </member>
     <member name="M:UnityEngine.StaticBatchingUtility.Combine(UnityEngine.GameObject[],UnityEngine.GameObject)">
       <summary>
-        <para>StaticBatchingUtility.Combine prepares all gos for static batching. staticBatchRoot is treated as their parent.</para>
+        <para>StaticBatchingUtility.Combine prepares all GameObjects contained in gos for static batching. staticBatchRoot is treated as their parent.</para>
       </summary>
-      <param name="gos"></param>
-      <param name="staticBatchRoot"></param>
+      <param name="gos">The GameObjects to prepare for static batching.</param>
+      <param name="staticBatchRoot">The GameObject that should become the root of the combined batch.</param>
     </member>
     <member name="T:UnityEngine.StereoTargetEyeMask">
       <summary>
@@ -31124,6 +31133,11 @@ Returns NULL if there is no associated alpha texture for the source sprite. This
     <member name="P:UnityEngine.SystemInfo.graphicsUVStartsAtTop">
       <summary>
         <para>Returns true if the texture UV coordinate convention for this platform has Y starting at the top of the image.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.SystemInfo.hasDynamicUniformArrayIndexingInFragmentShaders">
+      <summary>
+        <para>Returns true when the GPU has native support for indexing uniform arrays in fragment shaders without restrictions.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.SystemInfo.hasHiddenSurfaceRemovalOnGPU">
@@ -31340,13 +31354,12 @@ Note that GPUFences are only supported on PS4.</para>
         <para>This property is true if the current platform uses a reversed depth buffer (where values range from 1 at the near plane and 0 at far plane), and false if the depth buffer is normal (0 is near, 1 is far). (Read Only)</para>
       </summary>
     </member>
-    <member name="M:UnityEngine.SystemInfo.IsFormatSupported(UnityEngine.Experimental.Rendering.GraphicsFormat,UnityEngine.Experimental.Rendering.FormatUsage)">
+    <member name="M:UnityEngine.SystemInfo.IsFormatSupported">
       <summary>
         <para>Verifies that the specified graphics format is supported for the specified usage.</para>
       </summary>
-      <param name="format">The GraphicsFormat format to look up.</param>
-      <param name="format">The FormatUsage usage to look up.</param>
-      <param name="usage"></param>
+      <param name="Format">The Experimental.Rendering.GraphicsFormat format to look up.</param>
+      <param name="Usage">The Experimental.Rendering.FormatUsage usage to look up.</param>
       <returns>
         <para>Returns true if the format is supported for the specific usage. Returns false otherwise.</para>
       </returns>
@@ -33359,7 +33372,7 @@ Useful for restarting a trail from a new position.</para>
     </member>
     <member name="P:UnityEngine.Transform.position">
       <summary>
-        <para>The position of the transform in world space.</para>
+        <para>The world space position of the Transform.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Transform.right">

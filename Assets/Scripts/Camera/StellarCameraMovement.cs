@@ -27,9 +27,9 @@ public class StellarCameraMovement : MonoBehaviour
         dummyCamera = Instantiate(transform.gameObject);
         Transform dummyTransform = dummyCamera.transform;
         dummyTransform.SetParent(transform.parent, false);
-        dummyTransform.RotateAround(transform.parent.position, Vector3.up, Input.GetAxis("Mouse X") * 2f);
-        dummyTransform.RotateAround(transform.parent.position, dummyTransform.right, Input.GetAxis("Mouse Y") * -2f);
-        dummyTransform.rotation = Quaternion.Euler(dummyTransform.rotation.eulerAngles.x, dummyTransform.rotation.eulerAngles.y, 0f);
+        dummyTransform.RotateAround(transform.parent.position, Vector3.up, Input.GetAxis("Mouse X") * 2);
+        dummyTransform.RotateAround(transform.parent.position, dummyTransform.right, Input.GetAxis("Mouse Y") * -2);
+        dummyTransform.rotation = Quaternion.Euler(dummyTransform.rotation.eulerAngles.x, dummyTransform.rotation.eulerAngles.y, 0);
         
         float x = dummyTransform.rotation.eulerAngles.x;
         if((0 <= x && x <= 70) || (290 <= x && x < 360))
@@ -42,9 +42,9 @@ public class StellarCameraMovement : MonoBehaviour
       }
       float scroll = Input.GetAxis("Mouse ScrollWheel");
       distance = Vector3.Distance(transform.localPosition, transform.parent.position);
-      if ((scroll > 0 && distance > 10f) || (scroll < 0 && distance < 200f))
+      if ((scroll > 0 && distance > 10) || (scroll < 0 && distance < 200))
       {
-        transform.localPosition += transform.forward * Input.mouseScrollDelta.y * 5f;
+        transform.localPosition += transform.forward * Input.mouseScrollDelta.y * 5;
       }
     }
   }

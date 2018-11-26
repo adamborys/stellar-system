@@ -10,4 +10,14 @@ public abstract class InteractableController : MonoBehaviour
     {
         Indicator = new SelectionIndicator(gameObject);
     }
+
+    public void Select()
+    {
+        Indicator.IndicatorsHolder.SetActive(true);
+    }
+    public void Deselect()
+    {
+        Indicator.IndicatorsHolder.SetActive(false);
+    }
+
 }

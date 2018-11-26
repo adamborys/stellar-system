@@ -20,7 +20,7 @@ public class ActionsToggleController : MonoBehaviour
 
         start = new Vector3(0,120,0);
         end = new Vector3(0,170,0);
-        progress = 1f;
+        progress = 1;
     }   
 
     // Update is called once per frame 

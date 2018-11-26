@@ -38,6 +38,6 @@ public class ActionsController : MonoBehaviour
     {
         button.enabled = false;
         ActionProgress actionProgress = progress.GetComponent<ActionProgress>();
-        StartCoroutine(actionProgress.DisplayProgress(Time.realtimeSinceStartup, 5f, button));
+        StartCoroutine(actionProgress.DisplayProgress(Time.realtimeSinceStartup, 5, button));
     }
 }

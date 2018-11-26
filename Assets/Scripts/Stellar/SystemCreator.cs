@@ -7,9 +7,9 @@ public class SystemCreator : MonoBehaviour {
 	[Range(2,10)]
 	public int PlanetQuantity;
 	public int MaxRenderedSegments;
-	[Range(0f,0.2f)]
+	[Range(0,0.2f)]
 	public float SizeDispersion;
-	[Range(0f,0.5f)]
+	[Range(0,0.5f)]
 	public float AngleDispersion;
 
 	public static Vector3 EditorCameraPosition;

@@ -39,11 +39,11 @@ public class MenuController : MonoBehaviour
     PlanetController planetController = GameObject.Find("SystemOrigin").GetComponent<PlanetController>();
     if (gameDuration.value == 0)
     {
-      StellarSystem.GameDuration = 1800f;
+      StellarSystem.GameDuration = 1800;
     }
     else
     {
-      StellarSystem.GameDuration = 3600f;
+      StellarSystem.GameDuration = 3600;
     }
   }
 
