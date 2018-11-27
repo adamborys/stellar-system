@@ -5,11 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class Planet : Interactable 
 {
-    public int TectonicIntegrity { get => tectonicIntegrity; set => tectonicIntegrity = value; }
+    public int TectonicIntegrity => tectonicIntegrity;
     private int tectonicIntegrity;
 
-    public Planet(string unitClass, string iconPath, string miniaturePath, Alignment alignment,
-    int tectonicIntegrity) : base(unitClass, iconPath, miniaturePath, alignment)
+    public Planet(string iconPath, string miniaturePath, Alignment alignment,
+    int tectonicIntegrity) : base(iconPath, miniaturePath, alignment)
     {
+        this.tectonicIntegrity = tectonicIntegrity;
     }
 }

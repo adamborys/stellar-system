@@ -18,7 +18,7 @@ public abstract class Interactable
     private Alignment alignment;
 
 
-    protected Interactable(string unitClass, string iconPath, string miniaturePath, Alignment alignment)
+    protected Interactable(string iconPath, string miniaturePath, Alignment alignment)
     {
         this.UnitClass = unitClass;
         this.iconPath = iconPath;

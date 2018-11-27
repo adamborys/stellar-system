@@ -29,12 +29,7 @@ public class PlanetaryCameraMovement : MonoBehaviour
 
         detailedGrid.SetActive(false);
     }
-
-    void Update()
-    {
-        
-    }
-
+    
     void LateUpdate()
     {
         if (!IsLocked)
@@ -68,13 +63,13 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 {
                     if (camToggle.isOn && Magnitude > 15)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
-                    else if (PlanetarySelectionController.isPlanetSelected())
+                    else if (SingleSelectionController.isPlanetSelected())
                     {
                         if(Magnitude > 200)
                             transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
                     }
                     //Minimal distance from camera equal to selection bounds
-                    else if (Magnitude > PlanetarySelectionController.Selection
+                    else if (Magnitude > SingleSelectionController.Selection
                                         .GetComponent<MeshCollider>().bounds.size.z)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
                     
@@ -83,7 +78,7 @@ public class PlanetaryCameraMovement : MonoBehaviour
                 {
                     if (camToggle.isOn && Magnitude < 700)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
-                    else if (PlanetarySelectionController.Selection.name == "Planet" && Magnitude < 700)
+                    else if (SingleSelectionController.Selection.name == "Planet" && Magnitude < 700)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
                     else if (Magnitude < 50)
                         transform.localPosition -= 0.1f * transform.localPosition * Input.mouseScrollDelta.y;
@@ -133,7 +128,7 @@ public class PlanetaryCameraMovement : MonoBehaviour
     {
         if(!camToggle.isOn)
         {
-            if(PlanetarySelectionController.isPlanetSelected())
+            if(SingleSelectionController.isPlanetSelected())
                 transform.localPosition =
                     Vector3.Normalize(transform.localPosition) * 500;
             else
@@ -142,7 +137,7 @@ public class PlanetaryCameraMovement : MonoBehaviour
         }
         else
         {
-            if(PlanetarySelectionController.isPlanetSelected())
+            if(SingleSelectionController.isPlanetSelected())
                 transform.localPosition =
                     Vector3.Normalize(transform.localPosition) * Mathf.Clamp(Magnitude, 200, 700);
             else

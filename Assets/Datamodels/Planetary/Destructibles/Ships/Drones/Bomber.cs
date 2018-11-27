@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Bomber : Drone
 {
-    public Bomber(string unitClass, string iconPath, string miniaturePath, Alignment alignment, 
-    int hitpoints, int mass) : base(unitClass, iconPath, miniaturePath, alignment, hitpoints, mass)
+    public Bomber(string iconPath, string miniaturePath, Alignment alignment, 
+    int hitpoints, int mass) : base(iconPath, miniaturePath, alignment, hitpoints, mass)
     {
     }
 }

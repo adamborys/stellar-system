@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class SteerableShip : Ship
 {
-    public SteerableShip(string unitClass, string iconPath, string miniaturePath, Alignment alignment, 
-    int hitpoints, int mass) : base(unitClass, iconPath, miniaturePath, alignment, hitpoints, mass)
+    public SteerableShip(string iconPath, string miniaturePath, Alignment alignment, 
+    int hitpoints, int mass) : base(iconPath, miniaturePath, alignment, hitpoints, mass)
     {
     }
 }

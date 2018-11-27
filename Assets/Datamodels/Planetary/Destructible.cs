@@ -10,8 +10,8 @@ public abstract class Destructible : Interactable
     public int Mass { get => mass; }
     private int mass;
 
-    protected Destructible(string unitClass, string iconPath, string miniaturePath, Alignment alignment,
-    int hitpoints, int mass) : base(unitClass, iconPath, miniaturePath, alignment)
+    protected Destructible(string iconPath, string miniaturePath, Alignment alignment,
+    int hitpoints, int mass) : base(iconPath, miniaturePath, alignment)
     {
     }
 }

@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 65
+  controlID: 34
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 42
+  controlID: 71
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 43
+  controlID: 72
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -264,8 +264,8 @@ MonoBehaviour:
     y: 0
     width: 352
     height: 675
-  m_MinSize: {x: 277, y: 74}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -382,23 +382,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: a2bafcffc0bafcff04bcfcff74bcfcffa8bcfcff4634fdffbef6fdff5af8fdff88f8fdff92f8fdffa0f8fdffbaf8fdffc2f8fdffc4f8fdff3219feff9e19feff581afeff381ffeff9c1ffeff2e3afeff4c3afeff563afeffb23afeffc83afeff6a3bfeff883bfeff0c3dfeff343dfeffb067feffce67feff8269feffb669feff4082feff5e82feff1284feff4684feffd4fbfffff211000004120000425a00004a6200005c6200008062000088620000a8620000
+      m_SelectedIDs: 220d0000
+      m_LastClickedID: 3362
+      m_ExpandedIDs: d4fbffffd60c0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Shipyard
-        m_OriginalName: Shipyard
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -132960
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -439,9 +439,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.7275953, y: 3.2248483, z: 200.53548}
+    m_Target: {x: -67.86252, y: -51.234924, z: 73.02292}
     speed: 2
-    m_Value: {x: 0.7275953, y: 3.2248483, z: 200.53548}
+    m_Value: {x: -67.86252, y: -51.234924, z: 73.02292}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -469,13 +469,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.060878057, y: 0.93376905, z: 0.19229573, w: -0.2956208}
+    m_Target: {x: -0.05320822, y: 0.94635123, z: -0.21003774, w: -0.23973411}
     speed: 2
-    m_Value: {x: 0.060878057, y: 0.93376905, z: 0.19229573, w: -0.2956208}
+    m_Value: {x: -0.05320822, y: 0.94635123, z: -0.21003774, w: -0.23973411}
   m_Size:
-    m_Target: 17.44041
+    m_Target: 251.43704
     speed: 2
-    m_Value: 17.44041
+    m_Value: 251.43704
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -525,34 +525,34 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/DataModels/Planetary/UI
+    - Assets/Scripts/Stellar/Selection
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/DataModels/Planetary/UI
+  - Assets/Scripts/Stellar/Selection
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\residue\Desktop\Projekty\StellarSystem
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 75}
-    m_SelectedIDs: 0e110000
-    m_LastClickedID: 4366
-    m_ExpandedIDs: 000000007c0d00001a0e0000440e00004e0e00008e0e00003e0f0000860f0000a00f0000e60f0000221000002e1000003e10000052100000d81000003411000056110000a82f0000aa2f0000ac2f000000ca9a3b
+    scrollPos: {x: 0, y: 279}
+    m_SelectedIDs: 882c0000
+    m_LastClickedID: 11400
+    m_ExpandedIDs: 00000000b40900001c0a0000340a00003a0a00006c0a0000fc0a00002e0b0000420b0000700b0000a20b0000aa0b0000b60b0000c60b0000200c00008c2a00008e2a0000902a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: UI
+      m_OriginalName: UI
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 2894
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -566,7 +566,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007c0d00001a0e0000440e00004e0e00008e0e00003e0f0000860f0000a00f0000e60f00002e1000003e10000052100000d81000003411000056110000a82f0000aa2f0000ac2f0000
+    m_ExpandedIDs: 00000000b40900001c0a0000340a00003a0a00006c0a0000fc0a00002e0b0000420b0000700b0000a20b0000aa0b0000b60b0000c60b0000200c00005a0c00006a0c00008c2a00008e2a0000902a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

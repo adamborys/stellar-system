@@ -5,18 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class Action 
 {
-    public string PathToImageResource { get => pathToImageResource; set => pathToImageResource = value; }
+    public string PathToImageResource => pathToImageResource;
     private string pathToImageResource;
-    public string Title { get => title; set => title = value; }
+    public string Title => title;
     private string title;
-    public string Description { get => description; set => description = value; }
+    public string Description => description;
     private string description;
 
     public Action(string pathToImageResource, string title, string description)
     {
-        this.PathToImageResource = pathToImageResource;
-        this.Title = title;
-        this.Description = description;
+        this.pathToImageResource = pathToImageResource;
+        this.title = title;
+        this.description = description;
     }
 
 }
