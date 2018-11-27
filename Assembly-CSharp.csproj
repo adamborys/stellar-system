@@ -72,9 +72,8 @@
      <Compile Include="Assets\Interfaces\IDestructible.cs" />
      <Compile Include="Assets\Interfaces\IDockable.cs" />
      <Compile Include="Assets\Interfaces\IHostile.cs" />
-     <Compile Include="Assets\Scripts\Camera\PlanetaryCameraMovement.cs" />
-     <Compile Include="Assets\Scripts\Camera\StellarCameraMovement.cs" />
-     <Compile Include="Assets\Scripts\Planetary\Selection\SingleSelectionController.cs" />
+     <Compile Include="Assets\Scripts\Planetary\Camera\PlanetaryCameraMovement.cs" />
+     <Compile Include="Assets\Scripts\Planetary\Selection\PlanetarySelectionController.cs" />
      <Compile Include="Assets\Scripts\Planetary\UI\ActionPanel\ActionProgress.cs" />
      <Compile Include="Assets\Scripts\Planetary\UI\ActionPanel\ActionsController.cs" />
      <Compile Include="Assets\Scripts\Planetary\UI\ActionPanel\ActionsToggleController.cs" />
@@ -86,7 +85,8 @@
      <Compile Include="Assets\Scripts\Planetary\UnitControllers\DestructibleControllers\ShipController.cs" />
      <Compile Include="Assets\Scripts\Planetary\UnitControllers\DestructibleControllers\Ships\SteerableShipController.cs" />
      <Compile Include="Assets\Scripts\Planetary\UnitControllers\InteractableController.cs" />
-     <Compile Include="Assets\Scripts\Stellar\Selection\SelectionController.cs" />
+     <Compile Include="Assets\Scripts\Stellar\Camera\StellarCameraMovement.cs" />
+     <Compile Include="Assets\Scripts\Stellar\Selection\StellarSelectionController.cs" />
      <Compile Include="Assets\Scripts\Stellar\SystemControllers\OrbitProvider.cs" />
      <Compile Include="Assets\Scripts\Stellar\SystemControllers\PlanetController.cs" />
      <Compile Include="Assets\Scripts\Stellar\SystemControllers\SystemCreator.cs" />

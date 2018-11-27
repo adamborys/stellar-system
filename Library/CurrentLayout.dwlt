@@ -382,9 +382,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 220d0000
-      m_LastClickedID: 3362
-      m_ExpandedIDs: d4fbffffd60c0000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: def4fffffcf4ffff40f6ffffb0f6ffffe4f6ffff14f8ffff32f8ffff76f9ffffe6f9ffff1afaffffd4fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -535,24 +535,24 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 279}
-    m_SelectedIDs: 882c0000
-    m_LastClickedID: 11400
-    m_ExpandedIDs: 00000000b40900001c0a0000340a00003a0a00006c0a0000fc0a00002e0b0000420b0000700b0000a20b0000aa0b0000b60b0000c60b0000200c00008c2a00008e2a0000902a000000ca9a3b
+    scrollPos: {x: 0, y: 295}
+    m_SelectedIDs: da090000
+    m_LastClickedID: 2522
+    m_ExpandedIDs: 00000000b40900001e0a0000360a00003c0a0000700a0000fe0a0000300b0000440b0000720b0000a40b0000ac0b0000b80b0000c80b0000240c00009a2a00009c2a00009e2a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: UI
-      m_OriginalName: UI
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 2894
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -566,7 +566,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b40900001c0a0000340a00003a0a00006c0a0000fc0a00002e0b0000420b0000700b0000a20b0000aa0b0000b60b0000c60b0000200c00005a0c00006a0c00008c2a00008e2a0000902a0000
+    m_ExpandedIDs: 00000000b40900001e0a0000360a00003c0a0000700a0000fe0a0000300b0000440b0000720b0000a40b0000ac0b0000b80b0000c80b0000240c00009a2a00009c2a00009e2a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
